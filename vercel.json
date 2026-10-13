@@ -1,0 +1,1 @@
+{ "functions": { "api/build.js": { "maxDuration": 60 } } }
