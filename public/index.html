@@ -1,101 +1,581 @@
+
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#111827">
-<title>Debatrix — Debate Preparation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f4ec">
+<title>DEBATRIX — Debate & MUN Prep</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--soft:#667085;--line:#e3e8f1;--accent:#4f46e5;--accent-dark:#3730a3;--accent-soft:#eef2ff;--bad:#b42318;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1220;--card:#131c2e;--ink:#f1f5fb;--soft:#a6b2c7;--line:#29364c;--accent:#a5b4fc;--accent-dark:#c7d2fe;--accent-soft:#202748;--bad:#ff938b;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0c1220;--card:#131c2e;--ink:#f1f5fb;--soft:#a6b2c7;--line:#29364c;--accent:#a5b4fc;--accent-dark:#c7d2fe;--accent-soft:#202748;--bad:#ff938b;color-scheme:dark}
-:root[data-theme="light"]{color-scheme:light}
-html{scroll-padding-top:24px;scroll-behavior:smooth}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "DM Sans",system-ui,sans-serif;letter-spacing:-.01em}main{max-width:900px;margin:0 auto;padding:34px 22px 56px}
-header{padding:12px 2px 26px}.brandline{display:flex;align-items:center;gap:10px;margin-bottom:30px}.brandmark{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--accent);color:#fff;font:800 15px Manrope,sans-serif;letter-spacing:-.08em}.brandname{font:800 16px Manrope,sans-serif;letter-spacing:.055em}.brandmeta{margin-left:auto;color:var(--soft);font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}.eyebrow{display:inline-flex;align-items:center;gap:8px;margin:0 0 13px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.eyebrow:before{content:"";display:inline-block;width:18px;height:2px;background:var(--accent);border-radius:2px}h1{font:800 clamp(38px,7vw,62px)/1.06 Manrope,sans-serif;letter-spacing:-.055em;margin:0 0 12px;max-width:720px}h1 span{color:var(--accent);background:none;padding:0;display:inline;transform:none}.sub{color:var(--soft);max-width:58ch;font-size:17px;margin:0}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 12px 35px rgba(24,39,75,.055)}label{font-weight:700;display:block;margin:0 0 8px;font-size:14px}textarea,select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:13px 14px;transition:border-color .15s,box-shadow .15s}textarea{min-height:104px;resize:vertical}textarea::placeholder{color:#98a2b3}textarea:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 38%,transparent);outline-offset:2px;border-color:var(--accent)}.fieldhint{color:var(--soft);font-size:12px;margin:7px 0 0}.examples-head{display:flex;align-items:center;gap:8px;color:var(--soft);font-size:12px;font-weight:700;margin:15px 0 8px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0}.chip{font:inherit;font-size:12px;background:var(--bg);border:1px solid var(--line);color:var(--soft);border-radius:99px;padding:7px 11px;cursor:pointer;transition:all .15s}.chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}@media(max-width:560px){main{padding:20px 14px 40px}.row{grid-template-columns:1fr;gap:15px}.panel{padding:19px}.brandmeta{font-size:10px}.sub{font-size:15px}}
-.seg{display:flex;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--bg);padding:4px;gap:4px}.seg input{position:absolute;opacity:0;pointer-events:none}.seg label{flex:1;text-align:center;margin:0;padding:9px 10px;cursor:pointer;font-weight:700;border-radius:8px;color:var(--soft);font-size:14px}.seg input:checked+label{background:var(--accent);color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12)}.seg input:focus-visible+label{outline:3px solid var(--accent);outline-offset:2px}.go{margin-top:23px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font:700 15px "DM Sans",sans-serif;background:var(--accent);color:#fff;border:1px solid var(--accent);border-radius:11px;padding:12px 18px;cursor:pointer;box-shadow:0 4px 10px rgba(79,70,229,.16);transition:transform .15s,background .15s,box-shadow .15s}.go:hover{background:var(--accent-dark);box-shadow:0 7px 16px rgba(79,70,229,.2);transform:translateY(-1px)}.go:active{transform:translateY(0)}.go[disabled]{opacity:.65;cursor:wait;transform:none}#err{color:var(--bad);font-weight:600;margin:10px 0 0;min-height:1.2em}.note{font-size:12px;color:var(--soft);margin:14px 0 0;max-width:75ch}#out{margin-top:34px}.tabs{display:flex;gap:5px;border-bottom:1px solid var(--line);margin-bottom:20px;flex-wrap:wrap}.tab{font:inherit;font-weight:700;font-size:13px;background:none;border:1px solid transparent;border-bottom:0;color:var(--soft);padding:10px 14px;cursor:pointer;border-radius:10px 10px 0 0}.tab[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--line)}.frame{font-size:17px;font-weight:600;margin:0 0 18px;line-height:1.6}.pt{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:17px 18px;margin:0 0 12px}.pt h3{margin:0 0 8px;font-size:16px;letter-spacing:-.02em}.pt p{margin:7px 0}.src{font-size:12px;color:var(--soft)}.src a{color:var(--accent);font-weight:700;text-underline-offset:3px}.tag{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;border:1px solid var(--line);border-radius:5px;padding:2px 6px;margin-left:8px;vertical-align:middle;color:var(--soft)}.tag.strong{background:var(--accent-soft);color:var(--accent);border-color:transparent}.tag.medium{background:#fff7e6;color:#8a5800;border-color:#f4dfae}.tag.shaky{border-style:dashed;color:var(--bad);border-color:var(--bad)}.atk{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}@media(max-width:620px){.atk{grid-template-columns:1fr}}.atk>div{border-radius:13px;padding:15px 16px;border:1px solid var(--line);background:var(--card)}.atk .them{background:var(--bg)}.atk .you{border-color:color-mix(in srgb,var(--accent) 38%,var(--line))}.atk b{display:block;margin-bottom:5px;font-size:13px}.sheet{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;font-size:15px;line-height:1.5}.sheet h2{font:800 clamp(26px,5vw,38px)/1.1 Manrope,sans-serif;letter-spacing:-.04em;margin:0}.sheet .hook{font-size:15px;margin:8px 0 20px;color:var(--soft)}.sheet h4{font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:20px 0 8px;display:block;color:var(--accent);background:none;padding:0}.pill{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}.pill div{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:var(--bg)}.sheet ul{margin:0;padding-left:20px}.sheet li{margin:5px 0}.close{margin-top:20px;border-top:1px solid var(--line);padding-top:14px}.tools{margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.tools button{font:inherit;font-weight:700;font-size:13px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:9px 14px;cursor:pointer}.tools button:hover{border-color:var(--accent);color:var(--accent)}.spin{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;margin-right:3px;vertical-align:-2px;animation:r .8s linear infinite}@keyframes r{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.spin{animation:none}*{transition:none!important}}.credit{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);text-align:center;font-size:12px;color:var(--soft)}@media print{body{background:#fff;color:#000}header,.panel,.tabs,.tools,.note,#err{display:none!important}.sheet{border-color:#bbb;background:#fff;color:#000}#view-case,#view-atk{display:none!important}#view-doodle{display:block!important}}
+:root {
+  --bg: #f7f4ec;
+  --card: #fffdf7;
+  --ink: #191b18;
+  --soft: #64675e;
+  --line: #d9d9cd;
+  --accent: #c6f36a;
+  --accent-soft: #eef9d9;
+  --bad: #b42318;
+}
 
-/* DEBATRIX identity pass: playful, editorial, and sharp */
-:root{--bg:#f7f4ec;--card:#fffdf7;--ink:#191b18;--soft:#64675e;--line:#d9d9cd;--accent:#c6f36a;--accent-dark:#a8dc45;--accent-soft:#eef9d9;--bad:#b42318;color-scheme:light}
-:root[data-theme="dark"]{--bg:#f7f4ec;--card:#fffdf7;--ink:#191b18;--soft:#64675e;--line:#d9d9cd;--accent:#c6f36a;--accent-dark:#a8dc45;--accent-soft:#eef9d9;--bad:#b42318;color-scheme:light}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#f7f4ec;--card:#fffdf7;--ink:#191b18;--soft:#64675e;--line:#d9d9cd;--accent:#c6f36a;--accent-dark:#a8dc45;--accent-soft:#eef9d9;--bad:#b42318;color-scheme:light}}
-body{background-color:var(--bg);background-image:radial-gradient(#c8c9bb 0.7px,transparent 0.7px);background-size:17px 17px;letter-spacing:-.025em}
-main{max-width:960px;padding-top:28px}
-header{position:relative;padding:10px 4px 30px}
-.brandline{gap:11px;margin-bottom:37px}
-.brandmark{width:42px;height:42px;border-radius:13px;background:var(--accent);color:var(--ink);border:2px solid var(--ink);font-size:18px;box-shadow:3px 3px 0 var(--ink);transform:rotate(-5deg)}
-.brandname{font-size:18px;letter-spacing:.09em;font-weight:800}
-.brandmeta{color:var(--ink);border:1px solid #c9c9bc;background:#fffdf7;border-radius:99px;padding:5px 10px;font-size:10px;letter-spacing:.07em}
-.eyebrow{gap:9px;color:#505d31;font-size:11px;letter-spacing:.15em;margin-bottom:17px}
-.eyebrow:before{width:23px;height:3px;background:#191b18}
-h1{font-size:clamp(46px,8.6vw,82px);line-height:.99;letter-spacing:-.075em;max-width:790px;margin-bottom:18px}
-h1 span{position:relative;z-index:0;color:var(--ink);padding:0 .09em .02em;white-space:nowrap}
-h1 span:before{content:"";position:absolute;z-index:-1;left:0;right:0;bottom:.04em;height:.48em;background:var(--accent);transform:rotate(-1.8deg);border:1px solid var(--ink)}
-.sub{max-width:49ch;color:#55584f;font-size:17px;line-height:1.65}
-.panel{position:relative;background:var(--card);border:1.5px solid var(--ink);border-radius:19px;padding:clamp(19px,4vw,30px);box-shadow:6px 6px 0 var(--ink)}
-.panel:before{content:"YOUR TURN";position:absolute;right:22px;top:-13px;background:var(--accent);color:var(--ink);border:1.5px solid var(--ink);border-radius:5px;padding:3px 9px;font-size:9px;font-weight:900;letter-spacing:.14em;transform:rotate(2deg)}
-label{font-size:14px;letter-spacing:-.015em}
-textarea,select{background:#fbfaf4;border:1.5px solid #cfd0c3;border-radius:10px;color:var(--ink)}
-textarea{min-height:112px;line-height:1.55}
-textarea:focus,select:focus{background:#fff}
-.fieldhint{font-size:12px}
-.examples-head{color:var(--ink);font-size:12px;margin-top:17px}
-.examples-head span{background:var(--accent-soft);color:#435126;padding:2px 6px;border-radius:4px}
-.chips{gap:9px}
-.chip{background:#f7f4ec;color:#34372e;border:1.5px solid #d3d3c7;border-radius:8px;padding:8px 11px;font-size:12px;font-weight:700;text-align:left}
-.chip:hover{background:var(--accent);border-color:var(--ink);color:var(--ink);transform:translateY(-2px);box-shadow:2px 2px 0 var(--ink)}
-.row{gap:18px;margin-top:24px}
-.seg{background:#f2f0e7;border:1.5px solid #d3d3c7;border-radius:10px}
-.seg label{border-radius:7px;color:#65675f}
-.seg input:checked+label{background:var(--ink);color:var(--accent);box-shadow:2px 2px 0 #b4b6a8}
-.go{background:var(--accent);color:var(--ink);border:1.5px solid var(--ink);border-radius:9px;padding:13px 19px;font-weight:800;box-shadow:3px 3px 0 var(--ink)}
-.go:hover{background:#d5ff86;color:var(--ink);box-shadow:5px 5px 0 var(--ink);transform:translate(-2px,-2px)}
-.go:active{box-shadow:1px 1px 0 var(--ink);transform:translate(2px,2px)}
-.go[disabled]{background:#e4e5d9;color:#55584f;border-color:#9a9c90;box-shadow:2px 2px 0 #9a9c90}
-.note{color:#73756c}
-#out{margin-top:38px}
-.tabs{gap:7px;border-bottom:1.5px solid var(--ink)}
-.tab{border-radius:8px 8px 0 0;color:#65675f}
-.tab[aria-selected="true"]{background:var(--accent);color:var(--ink);border-color:var(--ink);font-weight:800}
-.pt,.atk>div,.sheet{border:1.5px solid #d3d3c7;border-radius:12px;background:var(--card)}
-.pt{box-shadow:2px 2px 0 #e0dfd4}
-.pt h3{font-size:17px}
-.atk .them{background:#f1efe6}
-.atk .you{border-color:#9ebd5e;background:#fbfff4}
-.sheet h4{color:#53672d}
-.pill div{background:#f6f4eb;border-color:#d3d3c7}
-.tools button{border:1.5px solid var(--ink);box-shadow:2px 2px 0 var(--ink);border-radius:8px}
-.tools button:hover{background:var(--accent);color:var(--ink);border-color:var(--ink)}
-.credit{border-color:#d1d1c4;color:#77796f}
-@media(max-width:560px){main{padding:18px 15px 38px}.brandline{margin-bottom:30px}.brandmeta{max-width:128px;text-align:center;line-height:1.3}.panel{box-shadow:4px 4px 0 var(--ink)}.panel:before{right:15px}.sub{font-size:15px}h1{font-size:clamp(43px,12vw,62px)}}
-@media(prefers-reduced-motion:reduce){.chip:hover,.go:hover,.go:active{transform:none}}
+* { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: radial-gradient(#c8c9bb .7px, transparent .7px);
+  background-size: 17px 17px;
+  color: var(--ink);
+  font: 15px/1.6 "DM Sans", system-ui, sans-serif;
+  letter-spacing: -.02em;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 22px 50px;
+}
+
+header { padding: 10px 4px 28px; }
+
+.brandline {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 35px;
+}
+
+.brandmark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: var(--accent);
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: rotate(-5deg);
+  font: 800 18px Manrope, sans-serif;
+}
+
+.brandname {
+  font: 800 18px Manrope, sans-serif;
+  letter-spacing: .09em;
+}
+
+.brandmeta {
+  margin-left: auto;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: var(--card);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  color: #53672d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 790px;
+  margin: 12px 0 18px;
+  font: 800 clamp(44px, 8vw, 78px)/1 Manrope, sans-serif;
+  letter-spacing: -.075em;
+}
+
+.highlight {
+  background: var(--accent);
+  border: 1px solid var(--ink);
+  padding: 0 .08em;
+  white-space: nowrap;
+}
+
+.sub {
+  max-width: 50ch;
+  margin: 0;
+  color: #55584f;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.mode-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 5px;
+  margin: 0 0 30px;
+  width: fit-content;
+  max-width: 100%;
+  background: #eae8de;
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+}
+
+.mode-btn {
+  padding: 10px 15px;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--soft);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.mode-btn.active {
+  background: var(--accent);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.new-tag {
+  margin-left: 5px;
+  font-size: 9px;
+  letter-spacing: .06em;
+}
+
+.panel {
+  position: relative;
+  padding: clamp(19px, 4vw, 30px);
+  border: 1.5px solid var(--ink);
+  border-radius: 19px;
+  background: var(--card);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.panel:before {
+  content: "YOUR TURN";
+  position: absolute;
+  top: -13px;
+  right: 22px;
+  padding: 3px 9px;
+  background: var(--accent);
+  border: 1.5px solid var(--ink);
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  transform: rotate(2deg);
+}
+
+label {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+textarea, select, input:not([type="radio"]) {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1.5px solid #cfd0c3;
+  border-radius: 10px;
+  background: #fbfaf4;
+  color: var(--ink);
+  font: inherit;
+}
+
+textarea {
+  min-height: 112px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+textarea:focus, select:focus, input:focus {
+  outline: 3px solid #c6f36a;
+  border-color: var(--ink);
+}
+
+.fieldhint {
+  margin: 7px 0 0;
+  color: var(--soft);
+  font-size: 12px;
+}
+
+.examples-head {
+  margin: 17px 0 8px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.examples-head span {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--accent-soft);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.chip {
+  padding: 8px 11px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chip:hover {
+  background: var(--accent);
+  border-color: var(--ink);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.seg {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: #f2f0e7;
+}
+
+.seg input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.seg label {
+  flex: 1;
+  margin: 0;
+  padding: 9px;
+  border-radius: 7px;
+  color: var(--soft);
+  text-align: center;
+  cursor: pointer;
+}
+
+.seg input:checked + label {
+  background: var(--ink);
+  color: var(--accent);
+}
+
+.go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 23px;
+  padding: 13px 19px;
+  border: 1.5px solid var(--ink);
+  border-radius: 9px;
+  background: var(--accent);
+  color: var(--ink);
+  font: 800 15px "DM Sans", sans-serif;
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+}
+
+.go:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.go:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.note {
+  max-width: 75ch;
+  margin: 14px 0 0;
+  color: var(--soft);
+  font-size: 12px;
+}
+
+#error, #err, #mun-err {
+  min-height: 1.2em;
+  margin-top: 10px;
+  color: var(--bad);
+  font-weight: 700;
+}
+
+#out, #mun-out { margin-top: 38px; }
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 20px;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.tab {
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  color: var(--soft);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.tab[aria-selected="true"] {
+  background: var(--accent);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.frame {
+  margin: 0 0 18px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.pt, .result-card {
+  margin-bottom: 12px;
+  padding: 17px 18px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: 2px 2px 0 #e0dfd4;
+  overflow-wrap: anywhere;
+}
+
+.pt h3, .result-card h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.pt p, .result-card p { margin: 7px 0; }
+
+.src {
+  color: var(--soft);
+  font-size: 12px;
+}
+
+.src a {
+  color: #53672d;
+  font-weight: 800;
+}
+
+.tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.atk {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.atk > div {
+  padding: 15px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+}
+
+.atk .them { background: #f1efe6; }
+.atk .you { background: #fbfff4; border-color: #9ebd5e; }
+
+.atk b { display: block; margin-bottom: 5px; }
+
+.sheet {
+  padding: 24px;
+  border: 1.5px solid var(--ink);
+  border-radius: 14px;
+  background: var(--card);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.sheet h2 {
+  margin: 0;
+  font: 800 clamp(26px, 5vw, 38px)/1.1 Manrope, sans-serif;
+}
+
+.sheet h4 {
+  margin: 20px 0 8px;
+  color: #53672d;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.sheet ul { padding-left: 20px; }
+
+.sheet li { margin: 5px 0; }
+
+.hook { color: var(--soft); }
+
+.pill {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.pill div {
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+}
+
+.close {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.tools button {
+  padding: 9px 14px;
+  border: 1.5px solid var(--ink);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 2px 2px 0 var(--ink);
+  cursor: pointer;
+}
+
+.mun-speech {
+  white-space: pre-wrap;
+  line-height: 1.8;
+}
+
+.credit {
+  margin-top: 44px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--soft);
+  font-size: 12px;
+  text-align: center;
+}
+
+.spin {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: rotate .8s linear infinite;
+}
+
+@keyframes rotate { to { transform: rotate(360deg); } }
+
+[hidden] { display: none !important; }
+
+@media(max-width:560px) {
+  main { padding: 18px 15px 38px; }
+  .brandline { margin-bottom: 28px; }
+  .brandmeta { max-width: 125px; text-align: center; }
+  .sub { font-size: 15px; }
+  .row, .atk { grid-template-columns: 1fr; }
+  .panel { box-shadow: 4px 4px 0 var(--ink); }
+  .mode-switch { width: 100%; }
+  .mode-btn { flex: 1; padding: 9px 8px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+@media print {
+  header, .mode-switch, .panel, .tabs, .tools, .note, .credit { display: none !important; }
+  body { background: white; }
+  .sheet, .result-card { box-shadow: none; }
+}
 </style>
 </head>
+
 <body>
 <main>
 <header>
-  <div class="brandline"><span class="brandmark" aria-hidden="true">D.</span><span class="brandname">DEBATRIX</span><span class="brandmeta">Debate preparation studio</span></div>
+  <div class="brandline">
+    <span class="brandmark" aria-hidden="true">D.</span>
+    <span class="brandname">DEBATRIX</span>
+    <span class="brandmeta">Debate & MUN prep</span>
+  </div>
+
   <p class="eyebrow">Think fast. Make your case.</p>
-  <h1>Walk in with <span>a case.</span></h1>
-  <p class="sub">Build sharper arguments, prepare for counterpoints, and get ready to defend your side.</p>
+  <h1>Walk in with <span class="highlight">a case.</span></h1>
+  <p class="sub">
+    Build sharper arguments, challenge assumptions, and prepare to
+    defend your ideas — or represent your country on the world stage.
+  </p>
 </header>
 
-<section class="panel" aria-label="Motion setup">
+<nav class="mode-switch" aria-label="Preparation mode">
+  <button type="button" class="mode-btn active"
+    id="mode-debate" aria-pressed="true">Debate Prep</button>
+  <button type="button" class="mode-btn"
+    id="mode-mun" aria-pressed="false">
+    Model UN <span class="new-tag">NEW</span>
+  </button>
+</nav>
+
+<!-- DEBATE PREP -->
+<section class="panel" id="debate-panel" aria-label="Debate setup">
   <label for="motion">What are we arguing about?</label>
-  <textarea id="motion" placeholder="Enter your debate motion or topic…" aria-describedby="motion-hint"></textarea>
-  <p class="fieldhint" id="motion-hint">Use the exact motion if you have one. You can start with an example below.</p>
+  <textarea id="motion" maxlength="300"
+    placeholder="Enter your debate motion or topic…"></textarea>
+  <p class="fieldhint">
+    Use the exact motion if you have one. You can start with an example below.
+  </p>
+
   <div class="examples-head">Need a starting point? <span>Try a motion</span></div>
   <div class="chips" id="chips"></div>
+
   <div class="row">
     <div>
       <label id="sidel">Which side are you on?</label>
       <div class="seg" role="radiogroup" aria-labelledby="sidel">
-        <input type="radio" name="side" id="s1" value="For" checked><label for="s1">For</label>
-        <input type="radio" name="side" id="s2" value="Against"><label for="s2">Against</label>
+        <input type="radio" name="side" id="s1" value="For" checked>
+        <label for="s1">For</label>
+        <input type="radio" name="side" id="s2" value="Against">
+        <label for="s2">Against</label>
       </div>
     </div>
     <div>
@@ -103,75 +583,422 @@ textarea:focus,select:focus{background:#fff}
       <select id="level">
         <option>School debate</option>
         <option>Parliamentary</option>
-        <option>Competitive debate / MUN</option>
+        <option>Competitive / MUN</option>
       </select>
     </div>
   </div>
-  <button class="go" id="go">Make my case <span aria-hidden="true">↗</span></button>
+
+  <button class="go" id="go" type="button">
+    Make my case <span aria-hidden="true">↗</span>
+  </button>
   <div id="err" role="alert"></div>
-  <p class="note">AI-generated preparation can be wrong. Use the source links to check evidence before relying on it in a debate.</p>
+  <p class="note">
+    AI preparation can be wrong. Check the evidence and sources before
+    relying on them in a debate.
+  </p>
 </section>
 
+<!-- MODEL UN: SEPARATE FROM DEBATE -->
+<section class="panel" id="mun-panel" aria-label="Model UN setup" hidden>
+  <p class="eyebrow">Your delegation. Your strategy.</p>
+  <h2 style="margin-top:0;font-family:Manrope,sans-serif">
+    Know your country. Shape the room.
+  </h2>
+  <p class="fieldhint" style="margin-bottom:22px">
+    Prepare around the country you represent, your committee agenda,
+    and the delegations you need to negotiate with.
+  </p>
+
+  <label for="mun-country">Which country are you representing?</label>
+  <input id="mun-country" maxlength="100" placeholder="e.g. India">
+
+  <div class="row">
+    <div>
+      <label for="mun-committee">Committee</label>
+      <input id="mun-committee" maxlength="150" placeholder="e.g. UNHRC">
+    </div>
+    <div>
+      <label for="mun-agenda">Agenda / topic</label>
+      <input id="mun-agenda" maxlength="300"
+        placeholder="e.g. Protection of refugees">
+    </div>
+  </div>
+
+  <div style="margin-top:22px">
+    <label for="mun-others">Other countries you're negotiating with</label>
+    <textarea id="mun-others" maxlength="500"
+      placeholder="e.g. China, United States, Brazil"></textarea>
+    <p class="fieldhint">
+      Enter one country or several, separated by commas. You can leave
+      this blank if you haven't been assigned other delegations.
+    </p>
+  </div>
+
+  <button class="go" id="mun-go" type="button">
+    Build my MUN prep <span aria-hidden="true">↗</span>
+  </button>
+  <div id="mun-err" role="alert"></div>
+  <p class="note">
+    Use official UN documents and your country's official sources to
+    verify changing policies and diplomatic positions.
+  </p>
+</section>
+
+<!-- DEBATE RESULTS -->
 <section id="out" hidden>
-  <div class="tabs" role="tablist">
-    <button class="tab" role="tab" id="t-case" aria-selected="true" aria-controls="view-case">Your case</button>
-    <button class="tab" role="tab" id="t-atk" aria-selected="false" aria-controls="view-atk">Attacks and defences</button>
-    <button class="tab" role="tab" id="t-doodle" aria-selected="false" aria-controls="view-doodle">Quick prep sheet</button>
+  <div class="tabs" role="tablist" aria-label="Debate results">
+    <button class="tab" role="tab" id="t-case"
+      aria-selected="true" aria-controls="view-case">Your case</button>
+    <button class="tab" role="tab" id="t-atk"
+      aria-selected="false" aria-controls="view-atk">Attacks and defences</button>
+    <button class="tab" role="tab" id="t-doodle"
+      aria-selected="false" aria-controls="view-doodle">Quick prep sheet</button>
   </div>
   <div id="view-case" role="tabpanel"></div>
   <div id="view-atk" role="tabpanel" hidden></div>
   <div id="view-doodle" role="tabpanel" hidden></div>
 </section>
-<footer class="credit">Debatrix · Built for better arguments <span aria-hidden="true">·</span> Created by Siddharth.N</footer>
+
+<!-- MUN RESULTS -->
+<section id="mun-out" aria-live="polite" hidden></section>
+
+<footer class="credit">
+  Debatrix · Built for better arguments · Created by Siddharth.N
+</footer>
 </main>
 
 <script>
-const $=s=>document.querySelector(s);
-const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const EX=['Social media does more harm than good to teenagers','Homework should be banned in primary schools','Nuclear power is essential to fight climate change','School uniforms should be compulsory'];
-$('#chips').innerHTML=EX.map(e=>`<button type="button" class="chip">${esc(e)}</button>`).join('');
-$('#chips').addEventListener('click',e=>{if(e.target.classList.contains('chip'))$('#motion').value='This house believes that '+e.target.textContent.charAt(0).toLowerCase()+e.target.textContent.slice(1)});
+const $ = s => document.querySelector(s);
 
-const tabs=['case','atk','doodle'];
-function show(n){tabs.forEach(t=>{$('#t-'+t).setAttribute('aria-selected',t===n);$('#view-'+t).hidden=t!==n})}
-tabs.forEach(t=>$('#t-'+t).addEventListener('click',()=>show(t)));
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;"
+}[c]));
 
-function link(src,yr){return 'https://scholar.google.com/scholar?q='+encodeURIComponent((src||'')+' '+(yr||''))}
+const EX = [
+  "Social media does more harm than good to teenagers",
+  "Homework should be banned in primary schools",
+  "Nuclear power is essential to fight climate change",
+  "School uniforms should be compulsory"
+];
 
-function render(d){
-  const pts=(d.points||[]).map(p=>`<article class="pt"><h3>${esc(p.title)}<span class="tag ${esc(p.strength)}">${esc(p.strength)}</span></h3>
-   <p>${esc(p.claim)}</p><p><b>Evidence:</b> ${esc(p.evidence)}</p>
-   <p class="src">Source: ${esc(p.source)}${p.year?' ('+esc(p.year)+')':''} · <a href="${link(p.source,p.year)}" target="_blank" rel="noopener">Find source</a></p>
-   <p class="src"><b>Check before you quote:</b> ${esc(p.check)}</p></article>`).join('');
-  $('#view-case').innerHTML=`<p class="frame">${esc(d.framing)}</p>`+pts;
-  $('#view-atk').innerHTML=(d.attacks||[]).map(a=>`<div class="atk"><div class="them"><b>They will say</b>${esc(a.they_say)}</div><div class="you"><b>You reply</b>${esc(a.you_say)}<div class="src">Backed by: ${esc(a.source)} · <a href="${link(a.source,'')}" target="_blank" rel="noopener">Find source</a></div></div></div>`).join('');
-  const k=d.doodle||{},li=a=>(a||[]).map(x=>`<li>${esc(x)}</li>`).join('');
-  $('#view-doodle').innerHTML=`<div class="sheet"><h2>${esc(k.headline)}</h2><p class="hook">${esc(k.hook)}</p>
-   <h4>3 pillars</h4><div class="pill">${(k.pillars||[]).map(x=>`<div>${esc(x)}</div>`).join('')}</div>
-   <h4>Numbers to drop</h4><ul>${li(k.numbers)}</ul>
-   <h4>If they say...</h4><ul>${li(k.comebacks)}</ul>
-   <h4>Zingers</h4><ul>${li(k.zingers)}</ul>
-   <div class="close"><b>Closer:</b> ${esc(k.closer)}</div></div>
-   <div class="tools"><button type="button" id="pr">Print prep sheet</button><span class="src">Sources are on the Your case tab. Verify them first.</span></div>`;
-  $('#pr').addEventListener('click',()=>window.print());
-  $('#out').hidden=false;show('case');$('#out').scrollIntoView({behavior:'smooth'});
+$("#chips").innerHTML = EX.map(e =>
+  `<button type="button" class="chip">${esc(e)}</button>`
+).join("");
+
+$("#chips").addEventListener("click", e => {
+  if (e.target.classList.contains("chip")) {
+    $("#motion").value =
+      "This house believes that " +
+      e.target.textContent.charAt(0).toLowerCase() +
+      e.target.textContent.slice(1);
+  }
+});
+
+// SWITCH BETWEEN DEBATE PREP AND MODEL UN
+function setMode(mode) {
+  const isMun = mode === "mun";
+
+  $("#debate-panel").hidden = isMun;
+  $("#mun-panel").hidden = !isMun;
+
+  $("#out").hidden = isMun || !$("#view-case").innerHTML;
+  $("#mun-out").hidden = !isMun || !$("#mun-out").innerHTML;
+
+  $("#mode-debate").classList.toggle("active", !isMun);
+  $("#mode-mun").classList.toggle("active", isMun);
+
+  $("#mode-debate").setAttribute("aria-pressed", String(!isMun));
+  $("#mode-mun").setAttribute("aria-pressed", String(isMun));
 }
 
-$('#go').addEventListener('click',async()=>{
-  const motion=$('#motion').value.trim(),err=$('#err'),btn=$('#go');
-  err.textContent='';
-  if(!motion){err.textContent='Type your motion first.';return}
-  if(motion.length>300){err.textContent='Keep the motion under 300 characters.';return}
-  const side=document.querySelector('input[name=side]:checked').value,level=$('#level').value;
-  btn.disabled=true;btn.innerHTML='<span class="spin"></span>Building your prep…';
-  try{
-    const r=await fetch('/api/build',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({motion,side,level})});
-    if(r.status===429)throw new Error('Too many requests. Wait a while and try again.');
-    if(!r.ok)throw new Error('Could not build your case. Try again in a moment.');
+$("#mode-debate").addEventListener("click", () => setMode("debate"));
+$("#mode-mun").addEventListener("click", () => setMode("mun"));
+
+// DEBATE RESULT TABS
+const tabs = ["case", "atk", "doodle"];
+
+function show(n) {
+  tabs.forEach(t => {
+    $("#t-" + t).setAttribute("aria-selected", String(t === n));
+    $("#view-" + t).hidden = t !== n;
+  });
+}
+
+tabs.forEach(t => {
+  $("#t-" + t).addEventListener("click", () => show(t));
+});
+
+function link(src, yr) {
+  return "https://scholar.google.com/scholar?q=" +
+    encodeURIComponent((src || "") + " " + (yr || ""));
+}
+
+function render(d) {
+  const pts = (d.points || []).map(p => `
+    <article class="pt">
+      <h3>${esc(p.title)}
+        <span class="tag">${esc(p.strength)}</span>
+      </h3>
+      <p>${esc(p.claim)}</p>
+      <p><b>Evidence:</b> ${esc(p.evidence)}</p>
+      <p class="src">
+        Source: ${esc(p.source)}${p.year ? " (" + esc(p.year) + ")" : ""}
+        · <a href="${link(p.source, p.year)}"
+        target="_blank" rel="noopener noreferrer">Find source</a>
+      </p>
+      <p class="src"><b>Check before you quote:</b> ${esc(p.check)}</p>
+    </article>
+  `).join("");
+
+  $("#view-case").innerHTML =
+    `<p class="frame">${esc(d.framing)}</p>` + pts;
+
+  $("#view-atk").innerHTML = (d.attacks || []).map(a => `
+    <div class="atk">
+      <div class="them">
+        <b>They will say</b>${esc(a.they_say)}
+      </div>
+      <div class="you">
+        <b>You reply</b>${esc(a.you_say)}
+        <div class="src">
+          Backed by: ${esc(a.source)}
+          · <a href="${link(a.source, "")}"
+          target="_blank" rel="noopener noreferrer">Find source</a>
+        </div>
+      </div>
+    </div>
+  `).join("");
+
+  const k = d.doodle || {};
+  const li = a => (a || []).map(x => `<li>${esc(x)}</li>`).join("");
+
+  $("#view-doodle").innerHTML = `
+    <div class="sheet">
+      <h2>${esc(k.headline)}</h2>
+      <p class="hook">${esc(k.hook)}</p>
+      <h4>3 pillars</h4>
+      <div class="pill">
+        ${(k.pillars || []).map(x => `<div>${esc(x)}</div>`).join("")}
+      </div>
+      <h4>Numbers to check</h4><ul>${li(k.numbers)}</ul>
+      <h4>If they say...</h4><ul>${li(k.comebacks)}</ul>
+      <h4>Zingers</h4><ul>${li(k.zingers)}</ul>
+      <div class="close"><b>Closer:</b> ${esc(k.closer)}</div>
+    </div>
+    <div class="tools">
+      <button type="button" id="pr">Print prep sheet</button>
+      <span class="src">Verify evidence before using it.</span>
+    </div>
+  `;
+
+  $("#pr").addEventListener("click", () => window.print());
+  $("#out").hidden = false;
+  show("case");
+}
+
+// GENERATE DEBATE PREP
+$("#go").addEventListener("click", async () => {
+  const motion = $("#motion").value.trim();
+  const err = $("#err");
+  const btn = $("#go");
+
+  err.textContent = "";
+
+  if (!motion) {
+    err.textContent = "Type your motion first.";
+    return;
+  }
+
+  if (motion.length > 300) {
+    err.textContent = "Keep the motion under 300 characters.";
+    return;
+  }
+
+  const side = document.querySelector('input[name="side"]:checked').value;
+  const level = $("#level").value;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span> Building your prep…';
+
+  try {
+    const r = await fetch("/api/build", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ motion, side, level })
+    });
+
+    if (r.status === 429) {
+      throw new Error("Too many requests. Wait a while and try again.");
+    }
+
+    if (!r.ok) {
+      throw new Error("Could not build your case. Try again in a moment.");
+    }
+
     render(await r.json());
-  }catch(e){
-    err.textContent=e.message||'Could not build your case. Check your connection and try again.';
-  }finally{btn.disabled=false;btn.innerHTML='Make my case <span aria-hidden="true">↗</span>'}
+    $("#out").scrollIntoView({ behavior: "smooth" });
+  } catch (e) {
+    err.textContent = e.message ||
+      "Could not build your case. Check your connection and try again.";
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Make my case <span aria-hidden="true">↗</span>';
+  }
+});
+
+// SAFE HELPER FOR MUN RESULT LISTS
+function listItems(items) {
+  return (Array.isArray(items) ? items : [])
+    .map(item => `<li>${esc(item)}</li>`).join("");
+}
+
+function munCard(title, content) {
+  return `
+    <article class="result-card">
+      <h3>${esc(title)}</h3>
+      ${content}
+    </article>
+  `;
+}
+
+// DISPLAY MODEL UN RESULTS
+function renderMun(d) {
+  const dynamics = (d.countryDynamics || []).map(item => `
+    <article class="result-card">
+      <h3>${esc(item.country)}</h3>
+      <p><b>Potential alignment or disagreement:</b>
+        ${esc(item.relationship)}</p>
+      <p>${esc(item.reason)}</p>
+      <p class="src">Confidence: ${esc(item.confidence)}</p>
+    </article>
+  `).join("");
+
+  $("#mun-out").innerHTML = `
+    ${munCard("Agenda overview",
+      `<p>${esc(d.overview)}</p>`)}
+
+    <article class="result-card">
+      <h3>Opening speech</h3>
+      <p class="mun-speech">${esc(d.openingSpeech)}</p>
+      <div class="tools">
+        <button type="button" id="copy-speech">Copy speech</button>
+      </div>
+    </article>
+
+    ${munCard("Your country's policy",
+      `<ul>${listItems(d.countryPosition)}</ul>`)}
+
+    ${munCard("Policy priorities",
+      `<ul>${listItems(d.policyPriorities)}</ul>`)}
+
+    <article class="result-card">
+      <h3>Country dynamics</h3>
+      <p class="fieldhint">
+        These are possible alignments, not guaranteed alliances.
+        Verify uncertain positions using official sources.
+      </p>
+      ${dynamics || "<p>No country dynamics were returned.</p>"}
+    </article>
+
+    ${munCard("Negotiation strategy",
+      `<ul>${listItems(d.negotiationStrategy)}</ul>`)}
+
+    ${munCard("Questions to ask other delegates (POIs)",
+      `<ul>${listItems(d.pois)}</ul>`)}
+
+    ${munCard("Draft resolution ideas",
+      `<ul>${listItems(d.resolutionIdeas)}</ul>`)}
+
+    ${munCard("Research checklist",
+      `<ul>${listItems(d.researchChecklist)}</ul>`)}
+
+    <p class="note">
+      AI-generated research may be incomplete or outdated.
+      Verify country positions, facts, and policies with official sources.
+    </p>
+
+    <div class="tools">
+      <button type="button" id="print-mun">Print MUN prep</button>
+    </div>
+  `;
+
+  $("#copy-speech").addEventListener("click", () => {
+    const speech = d.openingSpeech || "";
+    const btn = $("#copy-speech");
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(speech).then(() => {
+        btn.textContent = "Copied!";
+      }).catch(() => {
+        btn.textContent = "Copy failed — select the speech text";
+      });
+    } else {
+      btn.textContent = "Select and copy the speech text";
+    }
+  });
+
+  $("#print-mun").addEventListener("click", () => window.print());
+
+  $("#mun-out").hidden = false;
+}
+
+// GENERATE MODEL UN PREPARATION
+$("#mun-go").addEventListener("click", async () => {
+  const country = $("#mun-country").value.trim();
+  const committee = $("#mun-committee").value.trim();
+  const agenda = $("#mun-agenda").value.trim();
+  const otherCountries = $("#mun-others").value.trim();
+  const err = $("#mun-err");
+  const btn = $("#mun-go");
+
+  err.textContent = "";
+
+  if (!country || !committee || !agenda) {
+    err.textContent =
+      "Please enter your country, committee, and agenda.";
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span> Building your MUN prep…';
+
+  try {
+    const r = await fetch("/api/mun", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        country,
+        committee,
+        agenda,
+        otherCountries
+      })
+    });
+
+    if (r.status === 429) {
+      throw new Error("Too many requests. Please wait and try again.");
+    }
+
+    if (!r.ok) {
+      throw new Error(
+        "Could not build your MUN prep. Check your setup and try again."
+      );
+    }
+
+    const data = await r.json();
+    renderMun(data);
+    $("#mun-out").scrollIntoView({ behavior: "smooth" });
+  } catch (e) {
+    err.textContent = e.message ||
+      "Something went wrong. Check your connection and try again.";
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML =
+      'Build my MUN prep <span aria-hidden="true">↗</span>';
+  }
 });
 </script>
 </body>
