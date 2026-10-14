@@ -4,578 +4,236 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEBATRIX — Make Your Case</title>
 <meta name="theme-color" content="#f7f4ec">
-<title>DEBATRIX — Debate & MUN Prep</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #f7f4ec;
-  --card: #fffdf7;
-  --ink: #191b18;
-  --soft: #64675e;
-  --line: #d9d9cd;
-  --accent: #c6f36a;
-  --accent-soft: #eef9d9;
-  --bad: #b42318;
+  --bg:#f7f4ec;
+  --card:#fffdf7;
+  --ink:#191b18;
+  --soft:#62665b;
+  --line:#d9d9cd;
+  --lime:#c6f36a;
+  --red:#b42318;
 }
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
+* {box-sizing:border-box}
+[hidden] {display:none!important}
 body {
-  margin: 0;
-  background-color: var(--bg);
-  background-image: radial-gradient(#c8c9bb .7px, transparent .7px);
-  background-size: 17px 17px;
-  color: var(--ink);
-  font: 15px/1.6 "DM Sans", system-ui, sans-serif;
-  letter-spacing: -.02em;
+  margin:0;
+  background:var(--bg);
+  background-image:radial-gradient(#c8c9bb .7px,transparent .7px);
+  background-size:17px 17px;
+  color:var(--ink);
+  font:15px/1.6 "DM Sans",sans-serif;
 }
-
-main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 28px 22px 50px;
+button,input,textarea,select {font:inherit}
+button {cursor:pointer}
+button:disabled {opacity:.6;cursor:wait}
+button:focus-visible,input:focus-visible,textarea:focus-visible,
+select:focus-visible {
+  outline:3px solid #8ebd37;
+  outline-offset:2px;
 }
-
-header { padding: 10px 4px 28px; }
-
-.brandline {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  margin-bottom: 35px;
+main {max-width:960px;margin:auto;padding:25px 20px 60px}
+.topbar {display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo {
+  width:43px;height:43px;display:grid;place-items:center;
+  background:var(--lime);border:2px solid var(--ink);
+  border-radius:12px;box-shadow:3px 3px var(--ink);
+  font:800 19px Manrope;transform:rotate(-5deg);
 }
-
-.brandmark {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 13px;
-  background: var(--accent);
-  border: 2px solid var(--ink);
-  box-shadow: 3px 3px 0 var(--ink);
-  transform: rotate(-5deg);
-  font: 800 18px Manrope, sans-serif;
+.brand {font:800 19px Manrope;letter-spacing:.08em}
+.top-actions {margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.smallbtn {
+  padding:9px 12px;background:var(--card);
+  border:1.5px solid var(--ink);border-radius:9px;
+  font-size:12px;font-weight:800;
 }
-
-.brandname {
-  font: 800 18px Manrope, sans-serif;
-  letter-spacing: .09em;
-}
-
-.brandmeta {
-  margin-left: auto;
-  padding: 5px 10px;
-  border: 1px solid var(--line);
-  border-radius: 99px;
-  background: var(--card);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
+.hero {padding:45px 0 32px}
 .eyebrow {
-  color: #53672d;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .15em;
-  text-transform: uppercase;
+  color:#52672c;font-size:11px;font-weight:800;
+  letter-spacing:.15em;text-transform:uppercase;
 }
-
 h1 {
-  max-width: 790px;
-  margin: 12px 0 18px;
-  font: 800 clamp(44px, 8vw, 78px)/1 Manrope, sans-serif;
-  letter-spacing: -.075em;
+  margin:12px 0 18px;
+  font:800 clamp(42px,8vw,78px)/1.04 Manrope;
+  letter-spacing:-.07em;
 }
-
 .highlight {
-  background: var(--accent);
-  border: 1px solid var(--ink);
-  padding: 0 .08em;
-  white-space: nowrap;
+  background:var(--lime);border:1px solid var(--ink);
+  padding:0 .08em;
 }
-
-.sub {
-  max-width: 50ch;
-  margin: 0;
-  color: #55584f;
-  font-size: 17px;
-  line-height: 1.65;
+.subtitle {max-width:580px;color:var(--soft);font-size:17px}
+.modes {
+  display:flex;gap:8px;padding:5px;margin-bottom:28px;
+  width:fit-content;max-width:100%;
+  background:#eae8de;border:1.5px solid var(--ink);
+  border-radius:12px;
 }
-
-.mode-switch {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 5px;
-  margin: 0 0 30px;
-  width: fit-content;
-  max-width: 100%;
-  background: #eae8de;
-  border: 1.5px solid var(--ink);
-  border-radius: 12px;
+.mode {
+  border:1.5px solid transparent;border-radius:8px;
+  padding:10px 16px;background:transparent;
+  font-size:13px;font-weight:800;
 }
-
-.mode-btn {
-  padding: 10px 15px;
-  border: 1.5px solid transparent;
-  border-radius: 8px;
-  background: transparent;
-  color: var(--soft);
-  font: inherit;
-  font-size: 13px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.mode-btn.active {
-  background: var(--accent);
-  color: var(--ink);
-  border-color: var(--ink);
-}
-
-.new-tag {
-  margin-left: 5px;
-  font-size: 9px;
-  letter-spacing: .06em;
-}
-
+.mode.active {background:var(--lime);border-color:var(--ink)}
 .panel {
-  position: relative;
-  padding: clamp(19px, 4vw, 30px);
-  border: 1.5px solid var(--ink);
-  border-radius: 19px;
-  background: var(--card);
-  box-shadow: 6px 6px 0 var(--ink);
+  position:relative;background:var(--card);
+  border:1.5px solid var(--ink);border-radius:19px;
+  padding:clamp(20px,4vw,30px);
+  box-shadow:5px 5px var(--ink);
 }
-
 .panel:before {
-  content: "YOUR TURN";
-  position: absolute;
-  top: -13px;
-  right: 22px;
-  padding: 3px 9px;
-  background: var(--accent);
-  border: 1.5px solid var(--ink);
-  border-radius: 5px;
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: .14em;
-  transform: rotate(2deg);
+  content:"YOUR TURN";position:absolute;right:20px;top:-13px;
+  background:var(--lime);border:1.5px solid var(--ink);
+  border-radius:5px;padding:3px 9px;
+  font-size:10px;font-weight:800;letter-spacing:.1em;
+  transform:rotate(2deg);
 }
-
-label {
-  display: block;
-  margin: 0 0 8px;
-  font-size: 14px;
-  font-weight: 800;
+h2 {font:800 26px Manrope;letter-spacing:-.04em}
+h3 {margin:0 0 8px;font:800 17px Manrope}
+label {display:block;font-weight:800;margin:0 0 8px}
+input:not([type=radio]),textarea,select {
+  width:100%;padding:13px;border:1.5px solid #cfd0c3;
+  border-radius:10px;background:#fbfaf4;color:var(--ink);
 }
-
-textarea, select, input:not([type="radio"]) {
-  width: 100%;
-  padding: 13px 14px;
-  border: 1.5px solid #cfd0c3;
-  border-radius: 10px;
-  background: #fbfaf4;
-  color: var(--ink);
-  font: inherit;
-}
-
-textarea {
-  min-height: 112px;
-  resize: vertical;
-  line-height: 1.55;
-}
-
-textarea:focus, select:focus, input:focus {
-  outline: 3px solid #c6f36a;
-  border-color: var(--ink);
-}
-
-.fieldhint {
-  margin: 7px 0 0;
-  color: var(--soft);
-  font-size: 12px;
-}
-
-.examples-head {
-  margin: 17px 0 8px;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.examples-head span {
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: var(--accent-soft);
-}
-
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-}
-
-.chip {
-  padding: 8px 11px;
-  border: 1.5px solid var(--line);
-  border-radius: 8px;
-  background: var(--bg);
-  color: var(--ink);
-  font: inherit;
-  font-size: 12px;
-  font-weight: 700;
-  text-align: left;
-  cursor: pointer;
-}
-
-.chip:hover {
-  background: var(--accent);
-  border-color: var(--ink);
-}
-
+textarea {min-height:110px;resize:vertical}
 .row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin-top: 22px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:18px;margin-top:22px;
 }
-
-.seg {
-  display: flex;
-  gap: 4px;
-  padding: 4px;
-  border: 1.5px solid var(--line);
-  border-radius: 10px;
-  background: #f2f0e7;
+.hint {color:var(--soft);font-size:12px;margin:8px 0 0}
+.chips {display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip {
+  padding:8px 11px;background:var(--bg);
+  border:1px solid var(--line);border-radius:8px;
+  font-size:12px;font-weight:700;
 }
-
-.seg input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+.chip:hover {background:var(--lime)}
+.segment {display:flex;gap:8px}
+.segment label {
+  padding:10px 18px;border:1px solid var(--line);
+  border-radius:9px;background:var(--bg);cursor:pointer;
 }
-
-.seg label {
-  flex: 1;
-  margin: 0;
-  padding: 9px;
-  border-radius: 7px;
-  color: var(--soft);
-  text-align: center;
-  cursor: pointer;
+.segment input:checked+label {
+  background:var(--ink);color:var(--lime);
 }
-
-.seg input:checked + label {
-  background: var(--ink);
-  color: var(--accent);
+.primary {
+  margin-top:22px;padding:13px 19px;
+  background:var(--lime);border:1.5px solid var(--ink);
+  border-radius:9px;box-shadow:3px 3px var(--ink);
+  font-weight:800;
 }
-
-.go {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  margin-top: 23px;
-  padding: 13px 19px;
-  border: 1.5px solid var(--ink);
-  border-radius: 9px;
-  background: var(--accent);
-  color: var(--ink);
-  font: 800 15px "DM Sans", sans-serif;
-  box-shadow: 3px 3px 0 var(--ink);
-  cursor: pointer;
-  transition: transform .15s, box-shadow .15s;
+.primary:hover:not(:disabled) {transform:translate(-1px,-1px)}
+.error {color:var(--red);font-size:13px;font-weight:700;margin-top:10px}
+.success {color:#426b20;font-size:13px;font-weight:700}
+.results {margin-top:38px}
+.result-card {
+  padding:19px;margin-bottom:13px;background:var(--card);
+  border:1.5px solid var(--line);border-radius:13px;
+  box-shadow:2px 2px #deded4;
+  overflow-wrap:anywhere;
 }
-
-.go:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
+.result-card p {margin:8px 0}
+.result-card ul {padding-left:22px}
+.result-card li {margin:7px 0}
+.result-card a {color:#496c22}
+.result-title {font:800 29px Manrope;letter-spacing:-.04em}
+.result-tabs {display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.result-tab {
+  padding:10px 13px;border:1px solid var(--line);
+  border-radius:8px;background:var(--card);font-weight:800;
 }
-
-.go:disabled {
-  opacity: .65;
-  cursor: wait;
+.result-tab.active {background:var(--lime);border-color:var(--ink)}
+.toolbar {display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}
+.badge {
+  display:inline-block;padding:2px 7px;border:1px solid var(--line);
+  border-radius:5px;font-size:10px;font-weight:800;
 }
-
-.note {
-  max-width: 75ch;
-  margin: 14px 0 0;
-  color: var(--soft);
-  font-size: 12px;
+.auth-box {
+  margin-top:20px;padding:22px;background:var(--card);
+  border:1.5px solid var(--ink);border-radius:15px;
 }
-
-#error, #err, #mun-err {
-  min-height: 1.2em;
-  margin-top: 10px;
-  color: var(--bad);
-  font-weight: 700;
+.auth-box input {margin-bottom:13px}
+.auth-box .primary {margin-top:8px}
+.history-item {
+  display:flex;justify-content:space-between;align-items:center;
+  gap:15px;flex-wrap:wrap;padding:16px;
+  margin-bottom:10px;background:var(--card);
+  border:1.5px solid var(--line);border-radius:12px;
 }
-
-#out, #mun-out { margin-top: 38px; }
-
-.tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-bottom: 20px;
-  border-bottom: 1.5px solid var(--ink);
+.history-item p {margin:3px 0;color:var(--soft);font-size:12px}
+.history-actions {display:flex;gap:7px;flex-wrap:wrap}
+footer {
+  margin-top:50px;border-top:1px solid var(--line);
+  padding-top:18px;text-align:center;color:var(--soft);
+  font-size:12px;
 }
-
-.tab {
-  padding: 10px 14px;
-  border: 1px solid transparent;
-  border-radius: 8px 8px 0 0;
-  background: transparent;
-  color: var(--soft);
-  font: inherit;
-  font-size: 13px;
-  font-weight: 800;
-  cursor: pointer;
+@media(max-width:600px) {
+  main {padding:18px 15px 40px}
+  .row {grid-template-columns:1fr}
+  .top-actions {width:100%;margin-left:0}
+  .modes {width:100%}
+  .mode {flex:1;padding:10px}
+  .subtitle {font-size:15px}
 }
-
-.tab[aria-selected="true"] {
-  background: var(--accent);
-  color: var(--ink);
-  border-color: var(--ink);
-}
-
-.frame {
-  margin: 0 0 18px;
-  font-size: 17px;
-  font-weight: 700;
-}
-
-.pt, .result-card {
-  margin-bottom: 12px;
-  padding: 17px 18px;
-  border: 1.5px solid var(--line);
-  border-radius: 12px;
-  background: var(--card);
-  box-shadow: 2px 2px 0 #e0dfd4;
-  overflow-wrap: anywhere;
-}
-
-.pt h3, .result-card h3 {
-  margin: 0 0 8px;
-  font-size: 17px;
-}
-
-.pt p, .result-card p { margin: 7px 0; }
-
-.src {
-  color: var(--soft);
-  font-size: 12px;
-}
-
-.src a {
-  color: #53672d;
-  font-weight: 800;
-}
-
-.tag {
-  display: inline-block;
-  margin-left: 8px;
-  padding: 2px 6px;
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  font-size: 10px;
-  text-transform: uppercase;
-}
-
-.atk {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.atk > div {
-  padding: 15px;
-  border: 1.5px solid var(--line);
-  border-radius: 12px;
-}
-
-.atk .them { background: #f1efe6; }
-.atk .you { background: #fbfff4; border-color: #9ebd5e; }
-
-.atk b { display: block; margin-bottom: 5px; }
-
-.sheet {
-  padding: 24px;
-  border: 1.5px solid var(--ink);
-  border-radius: 14px;
-  background: var(--card);
-  line-height: 1.6;
-  overflow-wrap: anywhere;
-}
-
-.sheet h2 {
-  margin: 0;
-  font: 800 clamp(26px, 5vw, 38px)/1.1 Manrope, sans-serif;
-}
-
-.sheet h4 {
-  margin: 20px 0 8px;
-  color: #53672d;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-.sheet ul { padding-left: 20px; }
-
-.sheet li { margin: 5px 0; }
-
-.hook { color: var(--soft); }
-
-.pill {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
-}
-
-.pill div {
-  padding: 11px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--bg);
-}
-
-.close {
-  margin-top: 20px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
-
-.tools {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-.tools button {
-  padding: 9px 14px;
-  border: 1.5px solid var(--ink);
-  border-radius: 8px;
-  background: var(--card);
-  color: var(--ink);
-  font: inherit;
-  font-size: 13px;
-  font-weight: 800;
-  box-shadow: 2px 2px 0 var(--ink);
-  cursor: pointer;
-}
-
-.mun-speech {
-  white-space: pre-wrap;
-  line-height: 1.8;
-}
-
-.credit {
-  margin-top: 44px;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
-  color: var(--soft);
-  font-size: 12px;
-  text-align: center;
-}
-
-.spin {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border: 2px solid currentColor;
-  border-right-color: transparent;
-  border-radius: 50%;
-  animation: rotate .8s linear infinite;
-}
-
-@keyframes rotate { to { transform: rotate(360deg); } }
-
-[hidden] { display: none !important; }
-
-@media(max-width:560px) {
-  main { padding: 18px 15px 38px; }
-  .brandline { margin-bottom: 28px; }
-  .brandmeta { max-width: 125px; text-align: center; }
-  .sub { font-size: 15px; }
-  .row, .atk { grid-template-columns: 1fr; }
-  .panel { box-shadow: 4px 4px 0 var(--ink); }
-  .mode-switch { width: 100%; }
-  .mode-btn { flex: 1; padding: 9px 8px; }
-}
-
-@media(prefers-reduced-motion:reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-}
-
 @media print {
-  header, .mode-switch, .panel, .tabs, .tools, .note, .credit { display: none !important; }
-  body { background: white; }
-  .sheet, .result-card { box-shadow: none; }
+  .topbar,.hero,.modes,.panel,.toolbar,footer,
+  #history-panel,#auth-panel {display:none!important}
+  body {background:white}
+  .results {display:block!important;margin:0}
+  .result-card {box-shadow:none;break-inside:avoid}
 }
 </style>
 </head>
 
 <body>
 <main>
-<header>
-  <div class="brandline">
-    <span class="brandmark" aria-hidden="true">D.</span>
-    <span class="brandname">DEBATRIX</span>
-    <span class="brandmeta">Debate & MUN prep</span>
+<div class="topbar">
+  <div class="logo">D.</div>
+  <div class="brand">DEBATRIX</div>
+  <div class="top-actions">
+    <button class="smallbtn" id="history-btn">History</button>
+    <button class="smallbtn" id="auth-btn">Log in / Sign up</button>
+    <button class="smallbtn" id="logout-btn" hidden>Log out</button>
   </div>
+</div>
 
+<header class="hero">
   <p class="eyebrow">Think fast. Make your case.</p>
   <h1>Walk in with <span class="highlight">a case.</span></h1>
-  <p class="sub">
-    Build sharper arguments, challenge assumptions, and prepare to
-    defend your ideas — or represent your country on the world stage.
+  <p class="subtitle">
+    Sharper arguments. Smarter preparation.
+    From the debate floor to the Model UN committee room.
+    Prepare with AI, then make the ideas your own.
   </p>
+  <p class="hint" id="account-status">Guest mode — no login required.</p>
 </header>
 
-<nav class="mode-switch" aria-label="Preparation mode">
-  <button type="button" class="mode-btn active"
-    id="mode-debate" aria-pressed="true">Debate Prep</button>
-  <button type="button" class="mode-btn"
-    id="mode-mun" aria-pressed="false">
-    Model UN <span class="new-tag">NEW</span>
-  </button>
-</nav>
+<div class="modes" aria-label="Preparation modes">
+  <button class="mode active" id="mode-debate" aria-pressed="true">⚡ Debate Prep</button>
+  <button class="mode" id="mode-mun" aria-pressed="false">🌐 Model UN</button>
+</div>
 
-<!-- DEBATE PREP -->
-<section class="panel" id="debate-panel" aria-label="Debate setup">
+<section class="panel" id="debate-panel">
   <label for="motion">What are we arguing about?</label>
   <textarea id="motion" maxlength="300"
-    placeholder="Enter your debate motion or topic…"></textarea>
-  <p class="fieldhint">
-    Use the exact motion if you have one. You can start with an example below.
-  </p>
+    placeholder="Enter your debate motion..."></textarea>
+  <p class="hint">Use the exact motion if you have one.</p>
 
-  <div class="examples-head">Need a starting point? <span>Try a motion</span></div>
   <div class="chips" id="chips"></div>
 
   <div class="row">
     <div>
-      <label id="sidel">Which side are you on?</label>
-      <div class="seg" role="radiogroup" aria-labelledby="sidel">
-        <input type="radio" name="side" id="s1" value="For" checked>
-        <label for="s1">For</label>
-        <input type="radio" name="side" id="s2" value="Against">
-        <label for="s2">Against</label>
+      <label>Which side are you on?</label>
+      <div class="segment">
+        <input type="radio" name="side" id="for" value="For" checked>
+        <label for="for">For</label>
+        <input type="radio" name="side" id="against" value="Against">
+        <label for="against">Against</label>
       </div>
     </div>
     <div>
@@ -588,29 +246,22 @@ textarea:focus, select:focus, input:focus {
     </div>
   </div>
 
-  <button class="go" id="go" type="button">
-    Make my case <span aria-hidden="true">↗</span>
-  </button>
-  <div id="err" role="alert"></div>
-  <p class="note">
-    AI preparation can be wrong. Check the evidence and sources before
-    relying on them in a debate.
-  </p>
+  <button class="primary" id="debate-go">Make my case ↗</button>
+  <p class="error" id="debate-error" role="alert"></p>
+  <p class="hint">Verify evidence and sources before using them in a debate.</p>
 </section>
 
-<!-- MODEL UN: SEPARATE FROM DEBATE -->
-<section class="panel" id="mun-panel" aria-label="Model UN setup" hidden>
+<section class="panel" id="mun-panel" hidden>
   <p class="eyebrow">Your delegation. Your strategy.</p>
-  <h2 style="margin-top:0;font-family:Manrope,sans-serif">
-    Know your country. Shape the room.
-  </h2>
-  <p class="fieldhint" style="margin-bottom:22px">
-    Prepare around the country you represent, your committee agenda,
-    and the delegations you need to negotiate with.
+  <h2>Know your country. Shape the room.</h2>
+  <p class="hint">
+    Represent your assigned country and prepare for diplomacy.
   </p>
 
-  <label for="mun-country">Which country are you representing?</label>
-  <input id="mun-country" maxlength="100" placeholder="e.g. India">
+  <div style="margin-top:22px">
+    <label for="mun-country">Your assigned country</label>
+    <input id="mun-country" maxlength="100" placeholder="e.g. India">
+  </div>
 
   <div class="row">
     <div>
@@ -620,386 +271,639 @@ textarea:focus, select:focus, input:focus {
     <div>
       <label for="mun-agenda">Agenda / topic</label>
       <input id="mun-agenda" maxlength="300"
-        placeholder="e.g. Protection of refugees">
+        placeholder="e.g. Protecting refugees">
     </div>
   </div>
 
   <div style="margin-top:22px">
-    <label for="mun-others">Other countries you're negotiating with</label>
+    <label for="mun-others">Other countries / delegations</label>
     <textarea id="mun-others" maxlength="500"
-      placeholder="e.g. China, United States, Brazil"></textarea>
-    <p class="fieldhint">
-      Enter one country or several, separated by commas. You can leave
-      this blank if you haven't been assigned other delegations.
+      placeholder="e.g. China, USA, Brazil"></textarea>
+    <p class="hint">
+      Separate countries with commas. Not every country must be an opponent.
     </p>
   </div>
 
-  <button class="go" id="mun-go" type="button">
-    Build my MUN prep <span aria-hidden="true">↗</span>
-  </button>
-  <div id="mun-err" role="alert"></div>
-  <p class="note">
-    Use official UN documents and your country's official sources to
-    verify changing policies and diplomatic positions.
-  </p>
+  <button class="primary" id="mun-go">Build my MUN prep ↗</button>
+  <p class="error" id="mun-error" role="alert"></p>
+  <p class="hint">Verify country policies with official sources.</p>
 </section>
 
-<!-- DEBATE RESULTS -->
-<section id="out" hidden>
-  <div class="tabs" role="tablist" aria-label="Debate results">
-    <button class="tab" role="tab" id="t-case"
-      aria-selected="true" aria-controls="view-case">Your case</button>
-    <button class="tab" role="tab" id="t-atk"
-      aria-selected="false" aria-controls="view-atk">Attacks and defences</button>
-    <button class="tab" role="tab" id="t-doodle"
-      aria-selected="false" aria-controls="view-doodle">Quick prep sheet</button>
+<section class="results" id="results" hidden>
+  <h2 class="result-title" id="result-heading">Your preparation</h2>
+  <div class="toolbar">
+    <button class="smallbtn" id="save-btn">Save preparation</button>
+    <button class="smallbtn" id="print-btn">Print</button>
   </div>
-  <div id="view-case" role="tabpanel"></div>
-  <div id="view-atk" role="tabpanel" hidden></div>
-  <div id="view-doodle" role="tabpanel" hidden></div>
+  <p class="hint" id="save-status" role="status"></p>
+  <div id="result-body"></div>
 </section>
 
-<!-- MUN RESULTS -->
-<section id="mun-out" aria-live="polite" hidden></section>
+<section class="panel" id="auth-panel" hidden>
+  <p class="eyebrow">Your work. Your account.</p>
+  <h2>Welcome to DEBATRIX.</h2>
+  <p class="hint">
+    Sign in to sync your preparation history across devices.
+    Or close this panel and continue as a guest.
+  </p>
 
-<footer class="credit">
-  Debatrix · Built for better arguments · Created by Siddharth.N
-</footer>
+  <div class="auth-box">
+    <label for="auth-email">Email</label>
+    <input type="email" id="auth-email" autocomplete="email"
+      placeholder="you@example.com">
+
+    <label for="auth-password">Password</label>
+    <input type="password" id="auth-password"
+      autocomplete="current-password" minlength="8"
+      placeholder="At least 8 characters">
+
+    <div class="toolbar">
+      <button class="primary" id="login-btn">Log in</button>
+      <button class="primary" id="signup-btn">Sign up</button>
+    </div>
+    <p class="hint">Use an email address you can access for confirmation.</p>
+    <p id="auth-message" role="status"></p>
+  </div>
+  <button class="smallbtn" id="close-auth">Continue without login</button>
+</section>
+
+<section class="results" id="history-panel" hidden>
+  <h2 class="result-title">Your past preparations</h2>
+  <p class="hint" id="history-description"></p>
+  <div class="toolbar">
+    <button class="smallbtn" id="import-btn" hidden>
+      Import guest history to account
+    </button>
+    <button class="smallbtn" id="close-history">Back to preparation</button>
+  </div>
+  <p id="history-message" role="status"></p>
+  <div id="history-list"></div>
+</section>
+
+<footer>DEBATRIX · Built for better arguments · Created by Siddharth.N</footer>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
 <script>
-const $ = s => document.querySelector(s);
+"use strict";
 
-const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-  '"': "&quot;",
-  "'": "&#39;"
-}[c]));
+const SUPABASE_URL =
+  "https://vtsyhccmlhdjhvakjhsl.supabase.co";
 
-const EX = [
+const SUPABASE_KEY =
+  "sb_publishable_LQOBXRrnUTpdwHvRb_s3pw_Oa_aqx8z";
+
+const db = window.supabase
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+  : null;
+
+const $ = id => document.getElementById(id);
+
+const esc = value => String(value ?? "").replace(
+  /[&<>"']/g,
+  c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[c]
+);
+
+let currentUser = null;
+let currentPreparation = null;
+let currentMode = "debate";
+let currentTab = "case";
+
+const LOCAL_KEY = "debatrix_guest_history_v1";
+
+function guestHistory() {
+  try {
+    const data = JSON.parse(localStorage.getItem(LOCAL_KEY) || "[]");
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeGuestHistory(items) {
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+}
+
+function message(id, value) {
+  $(id).textContent = value;
+}
+
+function showWorkspace() {
+  $("auth-panel").hidden = true;
+  $("history-panel").hidden = true;
+  $("debate-panel").hidden = currentMode !== "debate";
+  $("mun-panel").hidden = currentMode !== "mun";
+  $("results").hidden = !currentPreparation;
+}
+
+function setMode(mode) {
+  currentMode = mode;
+  currentPreparation = null;
+  $("results").hidden = true;
+
+  $("mode-debate").classList.toggle("active", mode === "debate");
+  $("mode-mun").classList.toggle("active", mode === "mun");
+  $("mode-debate").setAttribute("aria-pressed", String(mode === "debate"));
+  $("mode-mun").setAttribute("aria-pressed", String(mode === "mun"));
+
+  showWorkspace();
+}
+
+$("mode-debate").onclick = () => setMode("debate");
+$("mode-mun").onclick = () => setMode("mun");
+
+const examples = [
   "Social media does more harm than good to teenagers",
   "Homework should be banned in primary schools",
   "Nuclear power is essential to fight climate change",
   "School uniforms should be compulsory"
 ];
 
-$("#chips").innerHTML = EX.map(e =>
-  `<button type="button" class="chip">${esc(e)}</button>`
-).join("");
-
-$("#chips").addEventListener("click", e => {
-  if (e.target.classList.contains("chip")) {
-    $("#motion").value =
-      "This house believes that " +
-      e.target.textContent.charAt(0).toLowerCase() +
-      e.target.textContent.slice(1);
-  }
+examples.forEach(example => {
+  const button = document.createElement("button");
+  button.className = "chip";
+  button.textContent = example;
+  button.onclick = () => {
+    $("motion").value = "This house believes that " +
+      example.charAt(0).toLowerCase() + example.slice(1);
+  };
+  $("chips").appendChild(button);
 });
 
-// SWITCH BETWEEN DEBATE PREP AND MODEL UN
-function setMode(mode) {
-  const isMun = mode === "mun";
-
-  $("#debate-panel").hidden = isMun;
-  $("#mun-panel").hidden = !isMun;
-
-  $("#out").hidden = isMun || !$("#view-case").innerHTML;
-  $("#mun-out").hidden = !isMun || !$("#mun-out").innerHTML;
-
-  $("#mode-debate").classList.toggle("active", !isMun);
-  $("#mode-mun").classList.toggle("active", isMun);
-
-  $("#mode-debate").setAttribute("aria-pressed", String(!isMun));
-  $("#mode-mun").setAttribute("aria-pressed", String(isMun));
+function card(title, content) {
+  return `<article class="result-card">
+    <h3>${esc(title)}</h3>${content}
+  </article>`;
 }
 
-$("#mode-debate").addEventListener("click", () => setMode("debate"));
-$("#mode-mun").addEventListener("click", () => setMode("mun"));
-
-// DEBATE RESULT TABS
-const tabs = ["case", "atk", "doodle"];
-
-function show(n) {
-  tabs.forEach(t => {
-    $("#t-" + t).setAttribute("aria-selected", String(t === n));
-    $("#view-" + t).hidden = t !== n;
-  });
+function list(items) {
+  return `<ul>${(Array.isArray(items) ? items : [])
+    .map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
 }
 
-tabs.forEach(t => {
-  $("#t-" + t).addEventListener("click", () => show(t));
-});
-
-function link(src, yr) {
-  return "https://scholar.google.com/scholar?q=" +
-    encodeURIComponent((src || "") + " " + (yr || ""));
+function sourceLink(source, year) {
+  const query = encodeURIComponent(`${source || ""} ${year || ""}`);
+  return `<a href="https://scholar.google.com/scholar?q=${query}"
+    target="_blank" rel="noopener noreferrer">Search for source ↗</a>`;
 }
 
-function render(d) {
-  const pts = (d.points || []).map(p => `
-    <article class="pt">
-      <h3>${esc(p.title)}
-        <span class="tag">${esc(p.strength)}</span>
-      </h3>
-      <p>${esc(p.claim)}</p>
-      <p><b>Evidence:</b> ${esc(p.evidence)}</p>
-      <p class="src">
-        Source: ${esc(p.source)}${p.year ? " (" + esc(p.year) + ")" : ""}
-        · <a href="${link(p.source, p.year)}"
-        target="_blank" rel="noopener noreferrer">Find source</a>
-      </p>
-      <p class="src"><b>Check before you quote:</b> ${esc(p.check)}</p>
-    </article>
-  `).join("");
+function renderDebate(d) {
+  const points = (d.points || []).map(p => card(
+    p.title,
+    `<span class="badge">${esc(p.strength)}</span>
+     <p><b>Claim:</b> ${esc(p.claim)}</p>
+     <p><b>Evidence:</b> ${esc(p.evidence)}</p>
+     <p class="hint">Source: ${esc(p.source)} ${esc(p.year)}</p>
+     <p>${sourceLink(p.source,p.year)}</p>
+     <p class="hint"><b>Verify:</b> ${esc(p.check)}</p>`
+  )).join("");
 
-  $("#view-case").innerHTML =
-    `<p class="frame">${esc(d.framing)}</p>` + pts;
-
-  $("#view-atk").innerHTML = (d.attacks || []).map(a => `
-    <div class="atk">
-      <div class="them">
-        <b>They will say</b>${esc(a.they_say)}
-      </div>
-      <div class="you">
-        <b>You reply</b>${esc(a.you_say)}
-        <div class="src">
-          Backed by: ${esc(a.source)}
-          · <a href="${link(a.source, "")}"
-          target="_blank" rel="noopener noreferrer">Find source</a>
-        </div>
-      </div>
-    </div>
-  `).join("");
+  const attacks = (d.attacks || []).map(a => card(
+    "They say / You reply",
+    `<p><b>They say:</b> ${esc(a.they_say)}</p>
+     <p><b>You reply:</b> ${esc(a.you_say)}</p>
+     <p class="hint">Research lead: ${esc(a.source)}</p>`
+  )).join("");
 
   const k = d.doodle || {};
-  const li = a => (a || []).map(x => `<li>${esc(x)}</li>`).join("");
+  const quick = card(
+    k.headline || "Quick prep sheet",
+    `<p><b>Opening:</b> ${esc(k.hook)}</p>
+     <h3>Three pillars</h3>${list(k.pillars)}
+     <h3>Evidence to verify</h3>${list(k.numbers)}
+     <h3>Comebacks</h3>${list(k.comebacks)}
+     <h3>Memorable lines</h3>${list(k.zingers)}
+     <p><b>Closer:</b> ${esc(k.closer)}</p>`
+  );
 
-  $("#view-doodle").innerHTML = `
-    <div class="sheet">
-      <h2>${esc(k.headline)}</h2>
-      <p class="hook">${esc(k.hook)}</p>
-      <h4>3 pillars</h4>
-      <div class="pill">
-        ${(k.pillars || []).map(x => `<div>${esc(x)}</div>`).join("")}
-      </div>
-      <h4>Numbers to check</h4><ul>${li(k.numbers)}</ul>
-      <h4>If they say...</h4><ul>${li(k.comebacks)}</ul>
-      <h4>Zingers</h4><ul>${li(k.zingers)}</ul>
-      <div class="close"><b>Closer:</b> ${esc(k.closer)}</div>
+  $("result-body").innerHTML = `
+    <div class="result-tabs">
+      <button class="result-tab" data-tab="case">Your case</button>
+      <button class="result-tab" data-tab="attacks">Attacks & defences</button>
+      <button class="result-tab" data-tab="quick">Quick prep sheet</button>
     </div>
-    <div class="tools">
-      <button type="button" id="pr">Print prep sheet</button>
-      <span class="src">Verify evidence before using it.</span>
+    <div id="debate-case">
+      ${card("Understanding the motion",`<p>${esc(d.framing)}</p>`)}
+      ${points}
     </div>
+    <div id="debate-attacks" hidden>${attacks}</div>
+    <div id="debate-quick" hidden>${quick}</div>
+    <p class="hint">Source searches are not verified citations.
+    Check original documents before quoting evidence.</p>
   `;
 
-  $("#pr").addEventListener("click", () => window.print());
-  $("#out").hidden = false;
-  show("case");
+  document.querySelectorAll("[data-tab]").forEach(button => {
+    button.onclick = () => showDebateTab(button.dataset.tab);
+  });
+  showDebateTab(currentTab);
 }
 
-// GENERATE DEBATE PREP
-$("#go").addEventListener("click", async () => {
-  const motion = $("#motion").value.trim();
-  const err = $("#err");
-  const btn = $("#go");
+function showDebateTab(tab) {
+  currentTab = tab;
+  ["case","attacks","quick"].forEach(name => {
+    $("debate-" + name).hidden = name !== tab;
+  });
+  document.querySelectorAll("[data-tab]").forEach(button => {
+    button.classList.toggle("active",button.dataset.tab === tab);
+  });
+}
 
-  err.textContent = "";
+function renderMun(d) {
+  const dynamics = (d.countryDynamics || []).map(x =>
+    card(x.country || "Delegation",
+      `<p><b>Potential relationship:</b> ${esc(x.relationship)}</p>
+       <p>${esc(x.reason)}</p>
+       <p class="hint">Confidence: ${esc(x.confidence)}</p>`
+    )
+  ).join("");
 
-  if (!motion) {
-    err.textContent = "Type your motion first.";
-    return;
-  }
+  $("result-body").innerHTML = `
+    ${card("Agenda overview",`<p>${esc(d.overview)}</p>`)}
+    ${card("Opening speech",`<p style="white-space:pre-wrap">${esc(d.openingSpeech)}</p>
+      <button class="smallbtn" id="copy-speech">Copy speech</button>`)}
+    ${card("Country position",list(d.countryPosition))}
+    ${card("Policy priorities",list(d.policyPriorities))}
+    ${card("Other delegations",dynamics ||
+      "<p>No other delegations were analysed.</p>")}
+    ${card("Negotiation strategy",list(d.negotiationStrategy))}
+    ${card("Points of information",list(d.pois))}
+    ${card("Resolution ideas",list(d.resolutionIdeas))}
+    ${card("Research checklist",list(d.researchChecklist))}
+    <p class="hint">Diplomatic positions can change. Verify
+    policies and relationships using official government and UN sources.</p>
+  `;
 
-  if (motion.length > 300) {
-    err.textContent = "Keep the motion under 300 characters.";
-    return;
-  }
+  $("copy-speech").onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(d.openingSpeech || "");
+      $("copy-speech").textContent = "Copied!";
+    } catch {
+      $("copy-speech").textContent = "Select the speech to copy";
+    }
+  };
+}
 
-  const side = document.querySelector('input[name="side"]:checked').value;
-  const level = $("#level").value;
+function displayPreparation(prep) {
+  currentPreparation = prep;
+  currentMode = prep.mode;
+  $("result-heading").textContent = prep.title;
+  message("save-status","");
+  currentTab = "case";
 
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spin"></span> Building your prep…';
+  $("mode-debate").classList.toggle("active",prep.mode === "debate");
+  $("mode-mun").classList.toggle("active",prep.mode === "mun");
+  $("mode-debate").setAttribute("aria-pressed",String(prep.mode === "debate"));
+  $("mode-mun").setAttribute("aria-pressed",String(prep.mode === "mun"));
+
+  if (prep.mode === "mun") renderMun(prep.content);
+  else renderDebate(prep.content);
+
+  showWorkspace();
+  $("results").scrollIntoView({behavior:"smooth"});
+}
+
+async function generate(url, payload, buttonId, errorId, mode, title) {
+  const button = $(buttonId);
+  button.disabled = true;
+  button.textContent = "Building your preparation...";
+  message(errorId,"");
 
   try {
-    const r = await fetch("/api/build", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ motion, side, level })
+    const response = await fetch(url,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(payload)
     });
 
-    if (r.status === 429) {
-      throw new Error("Too many requests. Wait a while and try again.");
+    if (response.status === 429) {
+      throw new Error("Request limit reached. Please try again later.");
+    }
+    if (!response.ok) {
+      throw new Error("Generation failed. Please try again.");
     }
 
-    if (!r.ok) {
-      throw new Error("Could not build your case. Try again in a moment.");
-    }
+    const content = await response.json();
 
-    render(await r.json());
-    $("#out").scrollIntoView({ behavior: "smooth" });
-  } catch (e) {
-    err.textContent = e.message ||
-      "Could not build your case. Check your connection and try again.";
+    displayPreparation({
+      id:crypto.randomUUID(),
+      mode,
+      title,
+      content,
+      created_at:new Date().toISOString()
+    });
+
+    // Automatically save after successful generation.
+    await savePreparation(true);
+  } catch(error) {
+    message(errorId,error.message || "Something went wrong.");
   } finally {
-    btn.disabled = false;
-    btn.innerHTML = 'Make my case <span aria-hidden="true">↗</span>';
+    button.disabled = false;
+    button.textContent = mode === "mun"
+      ? "Build my MUN prep ↗" : "Make my case ↗";
   }
-});
-
-// SAFE HELPER FOR MUN RESULT LISTS
-function listItems(items) {
-  return (Array.isArray(items) ? items : [])
-    .map(item => `<li>${esc(item)}</li>`).join("");
 }
 
-function munCard(title, content) {
-  return `
-    <article class="result-card">
-      <h3>${esc(title)}</h3>
-      ${content}
-    </article>
-  `;
-}
+$("debate-go").onclick = () => {
+  const motion = $("motion").value.trim();
+  if (!motion) {
+    message("debate-error","Please enter a debate motion.");
+    return;
+  }
+  const side = document.querySelector('input[name="side"]:checked').value;
+  const level = $("level").value;
 
-// DISPLAY MODEL UN RESULTS
-function renderMun(d) {
-  const dynamics = (d.countryDynamics || []).map(item => `
-    <article class="result-card">
-      <h3>${esc(item.country)}</h3>
-      <p><b>Potential alignment or disagreement:</b>
-        ${esc(item.relationship)}</p>
-      <p>${esc(item.reason)}</p>
-      <p class="src">Confidence: ${esc(item.confidence)}</p>
-    </article>
-  `).join("");
+  generate("/api/build",{motion,side,level},
+    "debate-go","debate-error","debate",motion);
+};
 
-  $("#mun-out").innerHTML = `
-    ${munCard("Agenda overview",
-      `<p>${esc(d.overview)}</p>`)}
-
-    <article class="result-card">
-      <h3>Opening speech</h3>
-      <p class="mun-speech">${esc(d.openingSpeech)}</p>
-      <div class="tools">
-        <button type="button" id="copy-speech">Copy speech</button>
-      </div>
-    </article>
-
-    ${munCard("Your country's policy",
-      `<ul>${listItems(d.countryPosition)}</ul>`)}
-
-    ${munCard("Policy priorities",
-      `<ul>${listItems(d.policyPriorities)}</ul>`)}
-
-    <article class="result-card">
-      <h3>Country dynamics</h3>
-      <p class="fieldhint">
-        These are possible alignments, not guaranteed alliances.
-        Verify uncertain positions using official sources.
-      </p>
-      ${dynamics || "<p>No country dynamics were returned.</p>"}
-    </article>
-
-    ${munCard("Negotiation strategy",
-      `<ul>${listItems(d.negotiationStrategy)}</ul>`)}
-
-    ${munCard("Questions to ask other delegates (POIs)",
-      `<ul>${listItems(d.pois)}</ul>`)}
-
-    ${munCard("Draft resolution ideas",
-      `<ul>${listItems(d.resolutionIdeas)}</ul>`)}
-
-    ${munCard("Research checklist",
-      `<ul>${listItems(d.researchChecklist)}</ul>`)}
-
-    <p class="note">
-      AI-generated research may be incomplete or outdated.
-      Verify country positions, facts, and policies with official sources.
-    </p>
-
-    <div class="tools">
-      <button type="button" id="print-mun">Print MUN prep</button>
-    </div>
-  `;
-
-  $("#copy-speech").addEventListener("click", () => {
-    const speech = d.openingSpeech || "";
-    const btn = $("#copy-speech");
-
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(speech).then(() => {
-        btn.textContent = "Copied!";
-      }).catch(() => {
-        btn.textContent = "Copy failed — select the speech text";
-      });
-    } else {
-      btn.textContent = "Select and copy the speech text";
-    }
-  });
-
-  $("#print-mun").addEventListener("click", () => window.print());
-
-  $("#mun-out").hidden = false;
-}
-
-// GENERATE MODEL UN PREPARATION
-$("#mun-go").addEventListener("click", async () => {
-  const country = $("#mun-country").value.trim();
-  const committee = $("#mun-committee").value.trim();
-  const agenda = $("#mun-agenda").value.trim();
-  const otherCountries = $("#mun-others").value.trim();
-  const err = $("#mun-err");
-  const btn = $("#mun-go");
-
-  err.textContent = "";
+$("mun-go").onclick = () => {
+  const country = $("mun-country").value.trim();
+  const committee = $("mun-committee").value.trim();
+  const agenda = $("mun-agenda").value.trim();
+  const otherCountries = $("mun-others").value.trim();
 
   if (!country || !committee || !agenda) {
-    err.textContent =
-      "Please enter your country, committee, and agenda.";
+    message("mun-error","Enter your country, committee and agenda.");
     return;
   }
 
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spin"></span> Building your MUN prep…';
+  generate("/api/mun",{
+    country,committee,agenda,otherCountries
+  },"mun-go","mun-error","mun",
+  `${country} — ${agenda}`);
+};
+
+async function savePreparation(automatic=false) {
+  if (!currentPreparation) return;
+
+  const prep = currentPreparation;
+  try {
+    if (currentUser) {
+      if (!db) throw new Error("Supabase is unavailable.");
+      const {error} = await db.from("preparations").upsert({
+        id:prep.id,
+        user_id:currentUser.id,
+        mode:prep.mode,
+        title:prep.title,
+        content:prep.content,
+        created_at:prep.created_at
+      });
+      if (error) throw error;
+      message("save-status","Saved to your account.");
+    } else {
+      const items = guestHistory();
+      const index = items.findIndex(x => x.id === prep.id);
+      if (index >= 0) items[index] = prep;
+      else items.unshift(prep);
+      writeGuestHistory(items);
+      message("save-status","Saved on this device (guest mode).");
+    }
+  } catch(error) {
+    message("save-status",
+      "Could not save: " + (error.message || "Unknown error"));
+  }
+}
+
+$("save-btn").onclick = () => savePreparation();
+$("print-btn").onclick = () => window.print();
+
+async function refreshUser() {
+  if (!db) {
+    message("account-status","Guest mode. Login temporarily unavailable.");
+    return;
+  }
+
+  const {data,error} = await db.auth.getUser();
+  currentUser = error ? null : data.user;
+
+  $("logout-btn").hidden = !currentUser;
+  $("auth-btn").textContent = currentUser ? "My account" : "Log in / Sign up";
+
+  message("account-status",currentUser
+    ? "Signed in as " + currentUser.email
+    : "Guest mode — no login required.");
+}
+
+$("auth-btn").onclick = () => {
+  $("auth-panel").hidden = false;
+  $("history-panel").hidden = true;
+  $("debate-panel").hidden = true;
+  $("mun-panel").hidden = true;
+  $("results").hidden = true;
+  message("auth-message","");
+};
+
+$("close-auth").onclick = showWorkspace;
+
+$("signup-btn").onclick = async () => {
+  if (!db) return message("auth-message","Authentication is unavailable.");
+
+  const email = $("auth-email").value.trim();
+  const password = $("auth-password").value;
+
+  if (!email || password.length < 8) {
+    return message("auth-message","Enter an email and a password of at least 8 characters.");
+  }
+
+  $("signup-btn").disabled = true;
+  try {
+    const {data,error} = await db.auth.signUp({
+      email,
+      password,
+      options:{emailRedirectTo:window.location.origin}
+    });
+    if (error) throw error;
+
+    message("auth-message",data.session
+      ? "Account created! You are signed in."
+      : "Check your email for a confirmation link.");
+    await refreshUser();
+  } catch(error) {
+    message("auth-message",error.message);
+  } finally {
+    $("signup-btn").disabled = false;
+  }
+};
+
+$("login-btn").onclick = async () => {
+  if (!db) return message("auth-message","Authentication is unavailable.");
+
+  $("login-btn").disabled = true;
+  try {
+    const {error} = await db.auth.signInWithPassword({
+      email:$("auth-email").value.trim(),
+      password:$("auth-password").value
+    });
+    if (error) throw error;
+
+    await refreshUser();
+    message("auth-message","Successfully signed in.");
+    showWorkspace();
+  } catch(error) {
+    message("auth-message",error.message);
+  } finally {
+    $("login-btn").disabled = false;
+  }
+};
+
+$("logout-btn").onclick = async () => {
+  if (!db) return;
+  const {error} = await db.auth.signOut();
+  if (error) {
+    alert("Could not log out: " + error.message);
+    return;
+  }
+  currentUser = null;
+  currentPreparation = null;
+  await refreshUser();
+  showWorkspace();
+};
+
+if (db) {
+  db.auth.onAuthStateChange((_event,session) => {
+    currentUser = session?.user || null;
+    $("logout-btn").hidden = !currentUser;
+    $("auth-btn").textContent = currentUser ? "My account" : "Log in / Sign up";
+    message("account-status",currentUser
+      ? "Signed in as " + currentUser.email
+      : "Guest mode — no login required.");
+  });
+}
+
+async function loadHistory() {
+  message("history-message","Loading preparations...");
+  $("history-list").replaceChildren();
 
   try {
-    const r = await fetch("/api/mun", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        country,
-        committee,
-        agenda,
-        otherCountries
-      })
+    let items;
+    if (currentUser) {
+      const {data,error} = await db.from("preparations")
+        .select("id,mode,title,content,created_at")
+        .order("created_at",{ascending:false})
+        .limit(100);
+      if (error) throw error;
+      items = data || [];
+    } else {
+      items = guestHistory();
+    }
+
+    message("history-message",
+      items.length ? "" : "No saved preparations yet.");
+
+    items.forEach(prep => {
+      const item = document.createElement("div");
+      item.className = "history-item";
+
+      const details = document.createElement("div");
+      const title = document.createElement("strong");
+      title.textContent = prep.title;
+
+      const description = document.createElement("p");
+      description.textContent =
+        (prep.mode === "mun" ? "Model UN" : "Debate Prep") +
+        " · " + new Date(prep.created_at).toLocaleDateString();
+
+      details.append(title,description);
+
+      const actions = document.createElement("div");
+      actions.className = "history-actions";
+
+      const open = document.createElement("button");
+      open.className = "smallbtn";
+      open.textContent = "Open";
+      open.onclick = () => displayPreparation(prep);
+
+      const remove = document.createElement("button");
+      remove.className = "smallbtn";
+      remove.textContent = "Delete";
+      remove.onclick = async () => {
+        if (!confirm("Delete this preparation?")) return;
+
+        try {
+          if (currentUser) {
+            const {error} = await db.from("preparations")
+              .delete().eq("id",prep.id);
+            if (error) throw error;
+          } else {
+            writeGuestHistory(
+              guestHistory().filter(x => x.id !== prep.id)
+            );
+          }
+          await loadHistory();
+        } catch(error) {
+          message("history-message","Delete failed: " + error.message);
+        }
+      };
+
+      actions.append(open,remove);
+      item.append(details,actions);
+      $("history-list").appendChild(item);
     });
-
-    if (r.status === 429) {
-      throw new Error("Too many requests. Please wait and try again.");
-    }
-
-    if (!r.ok) {
-      throw new Error(
-        "Could not build your MUN prep. Check your setup and try again."
-      );
-    }
-
-    const data = await r.json();
-    renderMun(data);
-    $("#mun-out").scrollIntoView({ behavior: "smooth" });
-  } catch (e) {
-    err.textContent = e.message ||
-      "Something went wrong. Check your connection and try again.";
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML =
-      'Build my MUN prep <span aria-hidden="true">↗</span>';
+  } catch(error) {
+    message("history-message","Could not load history: " + error.message);
   }
-});
+}
+
+$("history-btn").onclick = async () => {
+  $("auth-panel").hidden = true;
+  $("debate-panel").hidden = true;
+  $("mun-panel").hidden = true;
+  $("results").hidden = true;
+  $("history-panel").hidden = false;
+
+  $("import-btn").hidden = !currentUser || guestHistory().length === 0;
+
+  message("history-description",currentUser
+    ? "Your saved preparations, synced to your account."
+    : "Guest history is stored only in this browser. Clearing browser data may erase it.");
+
+  await loadHistory();
+};
+
+$("close-history").onclick = showWorkspace;
+
+$("import-btn").onclick = async () => {
+  if (!currentUser || !db) return;
+
+  const items = guestHistory();
+  if (!items.length) return;
+
+  $("import-btn").disabled = true;
+  message("history-message","Importing guest history...");
+
+  try {
+    const rows = items.map(p => ({
+      id:p.id,
+      user_id:currentUser.id,
+      mode:p.mode,
+      title:p.title,
+      content:p.content,
+      created_at:p.created_at
+    }));
+
+    const {error} = await db.from("preparations").upsert(rows);
+    if (error) throw error;
+
+    // Clear local copies only after the server confirms success.
+    writeGuestHistory([]);
+    $("import-btn").hidden = true;
+    await loadHistory();
+    message("history-message","Guest preparations imported successfully.");
+  } catch(error) {
+    message("history-message","Import failed: " + error.message);
+  } finally {
+    $("import-btn").disabled = false;
+  }
+};
+
+refreshUser();
 </script>
 </body>
 </html>
