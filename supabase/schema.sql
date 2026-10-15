@@ -117,15 +117,9 @@ create policy "Members can add team preparations"
 drop policy if exists "Members can update team preparations" on public.team_preparations;
 create policy "Members can update team preparations"
   on public.team_preparations for update to authenticated
-  using (exists (
-    select 1 from public.team_members tm
-    where tm.team_id = team_preparations.team_id and tm.user_id = auth.uid()
-  ))
+  using (public.is_debatrix_team_member(team_preparations.team_id, auth.uid()))
   with check (
-    updated_by = auth.uid() and exists (
-      select 1 from public.team_members tm
-      where tm.team_id = team_preparations.team_id and tm.user_id = auth.uid()
-    )
+    updated_by = auth.uid() and public.is_debatrix_team_member(team_preparations.team_id, auth.uid())
   );
 
 create or replace function public.create_debatrix_team(team_name text)
