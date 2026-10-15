@@ -76,38 +76,42 @@ create policy "Owners manage shared snapshots"
   using (owner_id = auth.uid())
   with check (owner_id = auth.uid());
 
+create or replace function public.is_debatrix_team_member(target_team_id uuid, target_user_id uuid default auth.uid())
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $
+  select exists (
+    select 1 from public.team_members tm
+    where tm.team_id = target_team_id and tm.user_id = target_user_id
+  );
+$;
+
+revoke all on function public.is_debatrix_team_member(uuid, uuid) from public;
+grant execute on function public.is_debatrix_team_member(uuid, uuid) to authenticated;
+
 drop policy if exists "Members can read their teams" on public.debatrix_teams;
 create policy "Members can read their teams"
   on public.debatrix_teams for select to authenticated
-  using (exists (
-    select 1 from public.team_members tm
-    where tm.team_id = id and tm.user_id = auth.uid()
-  ));
+  using (public.is_debatrix_team_member(id, auth.uid()));
 
 drop policy if exists "Members can read memberships" on public.team_members;
 create policy "Members can read memberships"
   on public.team_members for select to authenticated
-  using (exists (
-    select 1 from public.team_members mine
-    where mine.team_id = team_members.team_id and mine.user_id = auth.uid()
-  ));
+  using (public.is_debatrix_team_member(team_members.team_id, auth.uid()));
 
 drop policy if exists "Members can read team preparations" on public.team_preparations;
 create policy "Members can read team preparations"
   on public.team_preparations for select to authenticated
-  using (exists (
-    select 1 from public.team_members tm
-    where tm.team_id = team_preparations.team_id and tm.user_id = auth.uid()
-  ));
+  using (public.is_debatrix_team_member(team_preparations.team_id, auth.uid()));
 
 drop policy if exists "Members can add team preparations" on public.team_preparations;
 create policy "Members can add team preparations"
   on public.team_preparations for insert to authenticated
   with check (
-    updated_by = auth.uid() and exists (
-      select 1 from public.team_members tm
-      where tm.team_id = team_preparations.team_id and tm.user_id = auth.uid()
-    )
+    updated_by = auth.uid() and public.is_debatrix_team_member(team_preparations.team_id, auth.uid())
   );
 
 drop policy if exists "Members can update team preparations" on public.team_preparations;
