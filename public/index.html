@@ -1,10 +1,9 @@
-
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#111827">
+<meta name="theme-color" content="#f7f4ec">
 <title>Debatrix — Debate Preparation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,27 +11,18 @@
 
 <style>
 :root {
-  --bg:#f7f4ec;
-  --card:#fffdf7;
-  --ink:#191b18;
-  --soft:#64675e;
-  --line:#d9d9cd;
-  --accent:#c6f36a;
-  --accent-dark:#a8dc45;
-  --accent-soft:#eef9d9;
-  --bad:#b42318;
+  --bg:#f7f4ec; --card:#fffdf7; --ink:#191b18;
+  --soft:#64675e; --line:#d9d9cd; --accent:#c6f36a;
+  --accent-dark:#a8dc45; --accent-soft:#eef9d9; --bad:#b42318;
   color-scheme:light;
 }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body {
-  margin:0;
-  background-color:var(--bg);
+  margin:0; background-color:var(--bg);
   background-image:radial-gradient(#c8c9bb .7px,transparent .7px);
-  background-size:17px 17px;
-  color:var(--ink);
-  font:15px/1.6 "DM Sans",system-ui,sans-serif;
-  letter-spacing:-.025em;
+  background-size:17px 17px; color:var(--ink);
+  font:15px/1.6 "DM Sans",system-ui,sans-serif; letter-spacing:-.025em;
 }
 main { max-width:960px; margin:auto; padding:28px 22px 56px; }
 header { padding:10px 4px 30px; }
@@ -50,9 +40,9 @@ header { padding:10px 4px 30px; }
   font-size:10px; letter-spacing:.07em; text-transform:uppercase;
 }
 .eyebrow {
-  display:inline-flex; align-items:center; gap:9px;
-  color:#505d31; font-size:11px; letter-spacing:.15em;
-  text-transform:uppercase; margin:0 0 17px; font-weight:800;
+  display:inline-flex; align-items:center; gap:9px; color:#505d31;
+  font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+  margin:0 0 17px; font-weight:800;
 }
 .eyebrow:before {
   content:""; display:inline-block; width:23px; height:3px;
@@ -71,8 +61,7 @@ h1 span:before {
 .sub { max-width:49ch; color:#55584f; font-size:17px; line-height:1.65; margin:0; }
 .panel {
   position:relative; background:var(--card); border:1.5px solid var(--ink);
-  border-radius:19px; padding:clamp(19px,4vw,30px);
-  box-shadow:6px 6px 0 var(--ink);
+  border-radius:19px; padding:clamp(19px,4vw,30px); box-shadow:6px 6px 0 var(--ink);
 }
 .panel:before {
   content:"YOUR TURN"; position:absolute; right:22px; top:-13px;
@@ -85,6 +74,7 @@ textarea,select {
   width:100%; font:inherit; color:var(--ink); background:#fbfaf4;
   border:1.5px solid #cfd0c3; border-radius:10px; padding:13px 14px;
 }
+input[type="text"] { box-sizing:border-box; }
 textarea { min-height:112px; resize:vertical; line-height:1.55; }
 textarea::placeholder { color:#98a2b3; }
 textarea:focus,select:focus,button:focus-visible,a:focus-visible {
@@ -177,9 +167,31 @@ textarea:focus,select:focus,button:focus-visible,a:focus-visible {
   #view-case,#view-atk { display:none!important; }
   #view-doodle { display:block!important; }
 }
+.featurebar{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 22px}
+.featurebar button,.secondary{font:700 12px "DM Sans",sans-serif;background:#fffdf7;color:#191b18;border:1.5px solid #191b18;border-radius:8px;padding:9px 12px;cursor:pointer;box-shadow:2px 2px 0 #191b18}
+.featurebar button[aria-pressed="true"],.featurebar button:hover,.secondary:hover{background:#c6f36a}
+.modepanel{margin-top:16px;padding-top:16px;border-top:1px solid #d9d9cd}
+.modepanel[hidden]{display:none!important}
+.mun-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:15px}
+.mun-grid .wide{grid-column:1/-1}
+.feature-actions{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
+.history-list{display:grid;gap:9px}
+.history-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid #d9d9cd;border-radius:10px;background:#fffdf7}
+.history-item button{border:1px solid #191b18;background:#c6f36a;border-radius:7px;padding:6px 9px;font-weight:700;cursor:pointer}
+.mun-result{background:#fffdf7;border:1.5px solid #d9d9cd;border-radius:12px;padding:17px;margin-bottom:12px}
+.mun-result h3{margin:0 0 8px}
+.mun-result li{margin:5px 0}
+.statusline{font-size:12px;color:#64675e;margin-top:8px}
+@media(max-width:560px){.mun-grid{grid-template-columns:1fr}.mun-grid .wide{grid-column:auto}.history-item{align-items:flex-start;flex-direction:column}}
+.auth-panel{margin:0 0 22px;padding:18px 20px;background:#fffdf7;border:1.5px solid #191b18;border-radius:15px;box-shadow:4px 4px 0 #191b18}
+.auth-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.auth-grid .wide{grid-column:1/-1}
+.auth-panel input{width:100%;font:inherit;padding:10px 12px;border:1.5px solid #cfd0c3;border-radius:9px;background:#fbfaf4;color:#191b18}
+.auth-actions,.team-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.secondary{font:700 12px "DM Sans",sans-serif;background:#fffdf7;border:1.5px solid #191b18;border-radius:8px;padding:8px 11px;cursor:pointer}
+.secondary:hover{background:#eef9d9}.auth-status{font-size:12px;color:#64675e;margin:8px 0 0}.team-box{margin-top:14px;padding-top:12px;border-top:1px solid #d9d9cd}.team-list{margin-top:10px}.team-item{padding:10px 0;border-bottom:1px solid #e3e2d9;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media(max-width:560px){.auth-grid{grid-template-columns:1fr}.auth-grid .wide{grid-column:auto}}
 </style>
 </head>
-
 <body>
 <main>
 <header>
@@ -192,23 +204,93 @@ textarea:focus,select:focus,button:focus-visible,a:focus-visible {
   <h1>Walk in with <span>a case.</span></h1>
   <p class="sub">Build sharper arguments, prepare for counterpoints, and get ready to defend your side.</p>
 </header>
+<section class="auth-panel" aria-label="Account and team workspace">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+    <h2 style="margin:0;font-size:20px">Your account & team workspace</h2>
+    <span id="auth-state" class="brandmeta">Not signed in</span>
+  </div>
+  <p class="fieldhint">Sign in to sync preparations across devices and work with your debate team.</p>
+  <div id="auth-form" class="auth-grid" style="margin-top:12px">
+    <div><label for="auth-email">Email</label><input id="auth-email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+    <div><label for="auth-password">Password</label><input id="auth-password" type="password" autocomplete="current-password" placeholder="At least 8 characters"></div>
+    <div class="wide auth-actions">
+      <button class="secondary" id="auth-signin" type="button">Sign in</button>
+      <button class="secondary" id="auth-signup" type="button">Create account</button>
+      <button class="secondary" id="auth-reset" type="button">Reset password</button>
+    </div>
+  </div>
+  <div id="auth-user-actions" class="auth-actions" hidden>
+    <button class="secondary" id="auth-signout" type="button">Sign out</button>
+    <button class="secondary" id="cloud-refresh" type="button">Refresh cloud saves</button>
+    <button class="secondary" id="teams-toggle" type="button">Team workspace</button>
+  </div>
+  <p class="auth-status" id="auth-status" role="status">Account services are initializing.</p>
+  <div id="team-box" class="team-box" hidden>
+    <h3 style="margin:0 0 8px">Team workspace</h3>
+    <div class="auth-grid">
+      <div><label for="team-name">Create a team</label><input id="team-name" maxlength="80" placeholder="e.g. School Debate Club"></div>
+      <div style="align-self:end"><button class="secondary" id="team-create" type="button">Create team</button></div>
+      <div><label for="team-invite">Join with invite code</label><input id="team-invite" maxlength="40" placeholder="Paste invite code"></div>
+      <div style="align-self:end"><button class="secondary" id="team-join" type="button">Join team</button></div>
+    </div>
+    <div id="team-list" class="team-list"></div>
+    <div id="team-work" hidden>
+      <p class="fieldhint" id="active-team-label"></p>
+      <div class="team-actions">
+        <button class="secondary" id="team-copy-code" type="button">Copy invite code</button>
+        <button class="secondary" id="team-save-prep" type="button">Save current prep to team</button>
+        <button class="secondary" id="team-refresh-preps" type="button">Refresh team preps</button>
+      </div>
+      <div id="team-preps" class="team-list"></div>
+    </div>
+  </div>
+</section>
 
-<section class="panel" aria-label="Motion setup">
+<div class="featurebar" aria-label="Debatrix tools">
+  <button type="button" id="mode-debate" aria-pressed="true">Debate prep</button>
+  <button type="button" id="mode-mun" aria-pressed="false">Model UN prep</button>
+  <button type="button" id="history-open">Saved preparations</button>
+</div>
+
+<section id="mun-panel" class="panel modepanel" aria-label="Model United Nations setup" hidden>
+  <h2 style="margin-top:0">Prepare your delegation.</h2>
+  <p class="fieldhint">Build a country brief, opening speech, negotiation strategy, POIs and resolution ideas.</p>
+  <div class="mun-grid">
+    <div><label for="mun-country">Your country</label><input id="mun-country" type="text" maxlength="100" placeholder="e.g. India" style="width:100%;font:inherit;padding:13px;border:1.5px solid #cfd0c3;border-radius:10px;background:#fbfaf4;color:#191b18"></div>
+    <div><label for="mun-committee">Committee</label><input id="mun-committee" type="text" maxlength="150" placeholder="e.g. UNHRC" style="width:100%;font:inherit;padding:13px;border:1.5px solid #cfd0c3;border-radius:10px;background:#fbfaf4;color:#191b18"></div>
+    <div class="wide"><label for="mun-agenda">Agenda</label><textarea id="mun-agenda" maxlength="300" placeholder="What issue is the committee discussing?"></textarea></div>
+    <div class="wide"><label for="mun-others">Other countries to consider (optional)</label><textarea id="mun-others" maxlength="500" style="min-height:76px" placeholder="Countries, blocs or delegations you expect to negotiate with"></textarea></div>
+  </div>
+  <button class="go" type="button" id="mun-go">Build my MUN brief ↗</button>
+  <div id="mun-err" role="alert"></div>
+  <p class="note">Country positions and alliances can change. Verify policy using official UN and government sources before your conference.</p>
+</section>
+
+<section id="history-panel" class="panel modepanel" hidden aria-label="Saved preparations">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <h2 style="margin:0">Your saved preparations</h2>
+    <button type="button" class="secondary" id="history-close">Close</button>
+  </div>
+  <p class="fieldhint">Your browser history is available locally. If you sign in, cloud saves appear here too and sync across devices.</p>
+  <div id="history-list" class="history-list"></div>
+  <div class="feature-actions">
+    <button type="button" class="secondary" id="history-clear">Clear local history</button>
+    <button type="button" class="secondary" id="cloud-history">Load cloud history</button>
+  </div>
+</section>
+
+<section class="panel" id="debate-panel" aria-label="Motion setup">
   <label for="motion">What are we arguing about?</label>
   <textarea id="motion" placeholder="Enter your debate motion or topic…" aria-describedby="motion-hint"></textarea>
   <p class="fieldhint" id="motion-hint">Use the exact motion if you have one. You can start with an example below.</p>
-
   <div class="examples-head">Need a starting point? <span>Try a motion</span></div>
   <div class="chips" id="chips"></div>
-
   <div class="row">
     <div>
       <label id="sidel">Which side are you on?</label>
       <div class="seg" role="radiogroup" aria-labelledby="sidel">
-        <input type="radio" name="side" id="s1" value="For" checked>
-        <label for="s1">For</label>
-        <input type="radio" name="side" id="s2" value="Against">
-        <label for="s2">Against</label>
+        <input type="radio" name="side" id="s1" value="For" checked><label for="s1">For</label>
+        <input type="radio" name="side" id="s2" value="Against"><label for="s2">Against</label>
       </div>
     </div>
     <div>
@@ -220,13 +302,19 @@ textarea:focus,select:focus,button:focus-visible,a:focus-visible {
       </select>
     </div>
   </div>
-
   <button class="go" id="go">Make my case <span aria-hidden="true">↗</span></button>
   <div id="err" role="alert"></div>
   <p class="note">AI-generated preparation can be wrong. Use the source links to check evidence before relying on it in a debate.</p>
 </section>
 
 <section id="out" hidden>
+  <div class="feature-actions" aria-label="Preparation actions">
+    <button type="button" class="secondary" id="save-prep">Save preparation</button>
+    <button type="button" class="secondary" id="share-prep">Create share link</button>
+    <button type="button" class="secondary" id="export-word">Export Word document</button>
+    <button type="button" class="secondary" id="copy-prep">Copy text</button>
+  </div>
+  <p class="statusline" id="feature-status" aria-live="polite"></p>
   <div class="tabs" role="tablist">
     <button class="tab" role="tab" id="t-case" aria-selected="true" aria-controls="view-case">Your case</button>
     <button class="tab" role="tab" id="t-atk" aria-selected="false" aria-controls="view-atk">Attacks and defences</button>
@@ -239,16 +327,11 @@ textarea:focus,select:focus,button:focus-visible,a:focus-visible {
 
 <footer class="credit">Debatrix · Built for better arguments <span aria-hidden="true">·</span> Created by Siddharth.N</footer>
 </main>
-
-<script>
+  <script>
 const $ = s => document.querySelector(s);
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
-  '&':'&amp;',
-  '<':'&lt;',
-  '>':'&gt;',
-  '"':'&quot;',
-  "'":'&#39;'
+  '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
 }[c]));
 
 const EX = [
@@ -278,10 +361,7 @@ function show(n) {
     $('#view-' + t).hidden = t !== n;
   });
 }
-
-tabs.forEach(t => {
-  $('#t-' + t).addEventListener('click', () => show(t));
-});
+tabs.forEach(t => $('#t-' + t).addEventListener('click', () => show(t)));
 
 function link(src, yr) {
   return 'https://scholar.google.com/scholar?q=' +
@@ -324,12 +404,9 @@ function render(d) {
       <p class="hook">${esc(k.hook)}</p>
       <h4>3 pillars</h4>
       <div class="pill">${(k.pillars || []).map(x => `<div>${esc(x)}</div>`).join('')}</div>
-      <h4>Numbers to drop</h4>
-      <ul>${li(k.numbers)}</ul>
-      <h4>If they say...</h4>
-      <ul>${li(k.comebacks)}</ul>
-      <h4>Zingers</h4>
-      <ul>${li(k.zingers)}</ul>
+      <h4>Numbers to drop</h4><ul>${li(k.numbers)}</ul>
+      <h4>If they say...</h4><ul>${li(k.comebacks)}</ul>
+      <h4>Zingers</h4><ul>${li(k.zingers)}</ul>
       <div class="close"><b>Closer:</b> ${esc(k.closer)}</div>
     </div>
     <div class="tools">
@@ -337,7 +414,6 @@ function render(d) {
       <span class="src">Sources are on the Your case tab. Verify them first.</span>
     </div>
   `;
-
   $('#pr').addEventListener('click', () => window.print());
   $('#out').hidden = false;
   show('case');
@@ -348,22 +424,13 @@ $('#go').addEventListener('click', async () => {
   const motion = $('#motion').value.trim();
   const err = $('#err');
   const btn = $('#go');
-
   err.textContent = '';
 
-  if (!motion) {
-    err.textContent = 'Type your motion first.';
-    return;
-  }
-
-  if (motion.length > 300) {
-    err.textContent = 'Keep the motion under 300 characters.';
-    return;
-  }
+  if (!motion) { err.textContent = 'Type your motion first.'; return; }
+  if (motion.length > 300) { err.textContent = 'Keep the motion under 300 characters.'; return; }
 
   const side = document.querySelector('input[name=side]:checked').value;
   const level = $('#level').value;
-
   btn.disabled = true;
   btn.innerHTML = '<span class="spin"></span>Building your prep…';
 
@@ -373,27 +440,633 @@ $('#go').addEventListener('click', async () => {
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({motion,side,level})
     });
-
-    if (r.status === 429) {
-      throw new Error('Too many requests. Wait a while and try again.');
-    }
-
-    if (!r.ok) {
-      throw new Error('Could not build your case. Try again in a moment.');
-    }
-
-    render(await r.json());
+    if (r.status === 429) throw new Error('Too many requests. Wait a while and try again.');
+    if (!r.ok) throw new Error('Could not build your case. Try again in a moment.');
+    currentPrep = await r.json();
+    currentKind = 'debate';
+    render(currentPrep);
   } catch (e) {
-    err.textContent = e.message ||
-      'Could not build your case. Check your connection and try again.';
+    err.textContent = e.message || 'Could not build your case. Check your connection and try again.';
   } finally {
     btn.disabled = false;
     btn.innerHTML = 'Make my case <span aria-hidden="true">↗</span>';
   }
 });
+
+// Local history, sharing, export and Model UN helpers
+let currentPrep = null;
+let currentKind = "debate";
+const HISTORY_KEY = "debatrix.preparations.v1";
+
+function safeJson(value) {
+  try { return JSON.stringify(value); } catch (_) { return "{}"; }
+}
+function readHistory() {
+  try {
+    const x = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
+    return Array.isArray(x) ? x : [];
+  } catch (_) { return []; }
+}
+function writeHistory(items) {
+  try {
+    localStorage.setItem(HISTORY_KEY, safeJson(items.slice(0,30)));
+    return true;
+  } catch (_) { return false; }
+}
+function setStatus(message) {
+  const el = $("#feature-status");
+  if (el) el.textContent = message;
+}
+function prepTitle(p) {
+  return p.title || p.motion || p.agenda || p.country || "Debatrix preparation";
+}
+function plainText(value) {
+  if (value == null) return "";
+  if (typeof value === "string" || typeof value === "number") return String(value);
+  if (Array.isArray(value)) return value.map(plainText).join("\n");
+  if (typeof value === "object")
+    return Object.entries(value).map(([k,v]) => k.replace(/([A-Z])/g," $1") + ":\n" + plainText(v)).join("\n\n");
+  return "";
+}
+function allPrepText() {
+  if (!currentPrep) return "";
+  return "DEBATRIX — " + prepTitle(currentPrep) + "\n\n" + plainText(currentPrep);
+}
+function showFeaturePanel(which) {
+  $("#debate-panel").hidden = which !== "debate";
+  $("#mun-panel").hidden = which !== "mun";
+  $("#history-panel").hidden = which !== "history";
+  $("#mode-debate").setAttribute("aria-pressed", which === "debate");
+  $("#mode-mun").setAttribute("aria-pressed", which === "mun");
+  if (which === "history") renderHistory();
+}
+$("#mode-debate").addEventListener("click", () => showFeaturePanel("debate"));
+$("#mode-mun").addEventListener("click", () => showFeaturePanel("mun"));
+$("#history-open").addEventListener("click", () => showFeaturePanel("history"));
+$("#history-close").addEventListener("click", () => showFeaturePanel("debate"));
+
+function renderHistory() {
+  const host = $("#history-list");
+  const items = readHistory();
+  if (!items.length) {
+    host.innerHTML = '<p class="fieldhint">No saved preparations yet. Generate one and press “Save preparation”.</p>';
+    return;
+  }
+  host.innerHTML = items.map((item,i) => `
+    <div class="history-item">
+      <div><b>${esc(item.title)}</b><div class="src">Local · ${esc(item.kind)} · ${esc(item.date)}</div></div>
+      <div><button type="button" data-load="${i}">Open</button> <button type="button" data-remove="${i}">Delete</button></div>
+    </div>
+  `).join('');
+  host.querySelectorAll("[data-load]").forEach(b => b.addEventListener("click", () => {
+    const item = readHistory()[Number(b.dataset.load)];
+    if (!item) return;
+    currentPrep = item.content;
+    currentKind = item.kind;
+    showFeaturePanel(currentKind === "mun" ? "mun" : "debate");
+    if (currentKind === "mun") renderMun(currentPrep);
+    else { render(currentPrep); $("#out").hidden = false; }
+  }));
+  host.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", () => {
+    const next = readHistory();
+    next.splice(Number(b.dataset.remove), 1);
+    writeHistory(next);
+    renderHistory();
+  }));
+}
+    $("#history-list").addEventListener("click",e=>{
+  const load=e.target.closest("[data-load]"),del=e.target.closest("[data-remove]");
+  if(load){
+    const item=readHistory()[Number(load.dataset.load)];
+    if(!item)return;
+    currentPrep=item.data;
+    currentKind=item.kind;
+    showFeaturePanel(item.kind==="mun"?"mun":"debate");
+    if(item.kind==="debate"){render(item.data);$("#out").hidden=false;}
+    else renderMun(item.data);
+    setStatus("Loaded from this browser's saved history.");
+  }
+  if(del){
+    const items=readHistory();
+    items.splice(Number(del.dataset.remove),1);
+    writeHistory(items);
+    renderHistory();
+  }
+});
+
+$("#history-clear").addEventListener("click",()=>{
+  if(confirm("Clear all preparations saved in this browser?")){
+    writeHistory([]);
+    renderHistory();
+  }
+});
+
+$("#save-prep").addEventListener("click",async()=>{
+  if(!currentPrep){setStatus("Generate a preparation first.");return;}
+  const items=readHistory();
+  items.unshift({
+    title:prepTitle(currentPrep),
+    kind:currentKind,
+    date:new Date().toLocaleString(),
+    data:currentPrep
+  });
+  const localOk=writeHistory(items);
+  let message=localOk?"Saved on this device.":"Could not save locally.";
+  if(window.debatrixCloud?.user){
+    try{
+      await window.debatrixCloud.savePrep(currentKind,currentPrep);
+      message+=" Also saved to your cloud account.";
+      await window.debatrixCloud.loadHistory();
+    }catch(e){message+=" Cloud save failed: "+e.message;}
+  }else message+=" Sign in to sync it to the cloud.";
+  setStatus(message);
+});
+
+$("#copy-prep").addEventListener("click",async()=>{
+  const txt=allPrepText();
+  if(!txt){setStatus("Generate a preparation first.");return;}
+  try{
+    await navigator.clipboard.writeText(txt);
+    setStatus("Preparation copied to clipboard.");
+  }catch(_){
+    setStatus("Clipboard access was blocked. Select and copy the result manually.");
+  }
+});
+
+$("#share-prep").addEventListener("click",async()=>{
+  if(!currentPrep){setStatus("Generate a preparation first.");return;}
+  if(window.debatrixCloud?.user){
+    try{
+      const token=await window.debatrixCloud.createShare(currentKind,currentPrep);
+      const url=location.href.split("#")[0]+"?share="+encodeURIComponent(token);
+      await navigator.clipboard.writeText(url);
+      setStatus("Cloud share link copied. Anyone with this link can view the preparation.");
+      return;
+    }catch(e){setStatus("Cloud share failed: "+e.message);return;}
+  }
+  try{
+    const payload=btoa(unescape(encodeURIComponent(safeJson({kind:currentKind,data:currentPrep}))));
+    const url=location.href.split("#")[0]+"#prep="+payload;
+    await navigator.clipboard.writeText(url);
+    setStatus("Link copied. This link contains the preparation in its URL.");
+  }catch(_){setStatus("Could not create a share link.");}
+});
+
+$("#export-word").addEventListener("click",()=>{
+  if(!currentPrep){setStatus("Generate a preparation first.");return;}
+  const content=allPrepText();
+  const doc='<!doctype html><html><head><meta charset="utf-8"><title>'+
+    esc(prepTitle(currentPrep))+
+    '</title></head><body><h1>DEBATRIX — '+
+    esc(prepTitle(currentPrep))+
+    '</h1><pre style="white-space:pre-wrap;font:12pt Arial">'+
+    esc(content)+'</pre></body></html>';
+  const blob=new Blob(["\ufeff",doc],{type:"application/msword"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="debatrix-preparation.doc";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  setStatus("Word-compatible document exported.");
+});
+
+function renderMun(d){
+  const host=$("#out");
+  host.hidden=false;
+  const arr=x=>Array.isArray(x)?x:[];
+  const list=items=>arr(items).map(x=>"<li>"+esc(plainText(x))+"</li>").join("");
+  const block=(title,body)=>`<section class="mun-result"><h3>${esc(title)}</h3>${body}</section>`;
+
+  $("#view-case").innerHTML=
+    block("Agenda overview","<p>"+esc(d.overview)+"</p>")+
+    block("Opening speech","<p>"+esc(d.openingSpeech)+"</p>")+
+    block("Country position","<ul>"+list(d.countryPosition)+"</ul>")+
+    block("Policy priorities","<ul>"+list(d.policyPriorities)+"</ul>");
+
+  $("#view-atk").innerHTML=
+    block("Country dynamics",arr(d.countryDynamics).map(x=>
+      `<article class="pt"><h3>${esc(x.country)} <span class="tag">${esc(x.confidence)}</span></h3><p>${esc(x.relationship)}</p><p>${esc(x.reason)}</p></article>`
+    ).join(""))+
+    block("Negotiation strategy","<ul>"+list(d.negotiationStrategy)+"</ul>")+
+    block("Questions to ask (POIs)","<ul>"+list(d.pois)+"</ul>");
+
+  $("#view-doodle").innerHTML=
+    block("Resolution ideas","<ul>"+list(d.resolutionIdeas)+"</ul>")+
+    block("Research checklist","<ul>"+list(d.researchChecklist)+"</ul>")+
+    '<div class="tools"><button type="button" id="pr">Print prep sheet</button></div>';
+
+  $("#pr").addEventListener("click",()=>window.print());
+  show("case");
+  host.scrollIntoView({behavior:"smooth"});
+}
+
+$("#mun-go").addEventListener("click",async()=>{
+  const payload={
+    country:$("#mun-country").value.trim(),
+    committee:$("#mun-committee").value.trim(),
+    agenda:$("#mun-agenda").value.trim(),
+    otherCountries:$("#mun-others").value.trim()
+  };
+  const err=$("#mun-err"),btn=$("#mun-go");
+  err.textContent="";
+  if(!payload.country||!payload.committee||!payload.agenda){
+    err.textContent="Add your country, committee and agenda first.";
+    return;
+  }
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin"></span>Building your MUN brief…';
+  try{
+    const r=await fetch("/api/mun",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(payload)
+    });
+    const data=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(
+      r.status===429
+        ?"Too many requests. Wait and try again."
+        :"Could not build the MUN brief. Check that /api/mun is deployed and try again."
+    );
+    currentPrep={
+      ...data,
+      title:`${payload.country} — ${payload.committee}`,
+      country:payload.country,
+      committee:payload.committee,
+      agenda:payload.agenda,
+      otherCountries:payload.otherCountries
+    };
+    currentKind="mun";
+    renderMun(currentPrep);
+  }catch(e){
+    err.textContent=e.message||"Could not build the MUN brief.";
+  }finally{
+    btn.disabled=false;
+    btn.textContent="Build my MUN brief ↗";
+  }
+});
+
+const originalRender=render;
+render=function(data){
+  currentPrep={
+    ...data,
+    title:$("#motion").value.trim(),
+    motion:$("#motion").value.trim(),
+    side:document.querySelector('input[name=side]:checked').value,
+    level:$("#level").value
+  };
+  currentKind="debate";
+  originalRender(data);
+};
+
+(function loadSharedPrep(){
+  if(!location.hash.startsWith("#prep="))return;
+  try{
+    const decoded=JSON.parse(decodeURIComponent(escape(atob(location.hash.slice(6)))));
+    if(!decoded||!decoded.data)return;
+    currentPrep=decoded.data;
+    currentKind=decoded.kind==="mun"?"mun":"debate";
+    if(currentKind==="mun"){
+      showFeaturePanel("mun");
+      renderMun(currentPrep);
+    }else{
+      showFeaturePanel("debate");
+      render(currentPrep);
+      $("#out").hidden=false;
+    }
+    setStatus("Opened a preparation shared by link.");
+  }catch(_){setStatus("That share link could not be read.");}
+})();
+
+// Supabase account, cloud-save and team workspace integration.
+// Use only your project's public publishable/anon key here.
+// Never put a service_role key in a browser file.
+const SUPABASE_URL = "https://vtsyhccmlhdjhvakjhsl.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_LQOBXRrnUTpdwHvRb_s3pw_Oa_aqx8z";
+
+(function initDebatrixCloud(){
+  const status=document.getElementById("auth-status");
+  const configured=SUPABASE_URL.startsWith("https://") &&
+    !SUPABASE_URL.includes("YOUR_") &&
+    SUPABASE_ANON_KEY &&
+    !SUPABASE_ANON_KEY.includes("YOUR_");
+
+  if(!configured){
+    status.textContent="Setup required: configure Supabase and run the SQL schema.";
+    return;
+  }
+
+  const loadScript=()=>new Promise((resolve,reject)=>{
+    if(window.supabase?.createClient){resolve();return;}
+    const script=document.createElement("script");
+    script.src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+    script.onload=resolve;
+    script.onerror=()=>reject(new Error("Could not load Supabase client"));
+    document.head.appendChild(script);
+  });
+
+  loadScript().then(()=>{
+    const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+    const state={client,user:null,teams:[],activeTeam:null,cloudHistory:[]};
+    const say=m=>{status.textContent=m;};
+    const errorText=e=>e?.message||String(e||"Unknown error");
+    const authState=document.getElementById("auth-state");
+    const authForm=document.getElementById("auth-form");
+    const userActions=document.getElementById("auth-user-actions");
+    const teamBox=document.getElementById("team-box");
+
+    async function syncAuth(session){
+      state.user=session?.user||null;
+      authState.textContent=state.user?state.user.email:"Not signed in";
+      authForm.hidden=!!state.user;
+      userActions.hidden=!state.user;
+      if(state.user){
+        say("Signed in. Your preparations can sync to this account.");
+        await loadHistory();
+        await loadTeams();
+      }else{
+        state.teams=[];
+        state.activeTeam=null;
+        state.cloudHistory=[];
+        renderHistory();
+        say("Signed out.");
+      }
+    }
+
+    async function loadHistory(){
+      if(!state.user)return;
+      const {data,error}=await client.from("preparations")
+        .select("id,mode,title,content,created_at")
+        .order("created_at",{ascending:false}).limit(50);
+      if(error)throw error;
+      state.cloudHistory=data||[];
+      renderHistory();
+    }
+
+    async function savePrep(mode,data){
+      if(!state.user)throw new Error("Sign in first to save to the cloud.");
+      const row={
+        id:crypto.randomUUID(),
+        user_id:state.user.id,
+        mode,
+        title:prepTitle(data),
+        content:data
+      };
+      const {error}=await client.from("preparations").insert(row);
+      if(error)throw error;
+      return row;
+    }
+
+    async function createShare(mode,data){
+      if(!state.user)throw new Error("Sign in first.");
+      const {data:row,error}=await client.from("shared_preparations")
+        .insert({
+          owner_id:state.user.id,
+          mode,
+          title:prepTitle(data),
+          content:data
+        }).select("token").single();
+      if(error)throw error;
+      return row.token;
+    }
+
+    async function loadTeams(){
+      if(!state.user)return;
+      const {data:members,error}=await client.from("team_members")
+        .select("team_id,role,joined_at").eq("user_id",state.user.id);
+      if(error)throw error;
+      const ids=(members||[]).map(m=>m.team_id);
+      if(!ids.length){
+        state.teams=[];
+        state.activeTeam=null;
+        renderTeams();
+        return;
+      }
+      const {data:teams,error:teamErr}=await client.from("debatrix_teams")
+        .select("id,name,invite_code,owner_id,created_at").in("id",ids);
+      if(teamErr)throw teamErr;
+      state.teams=(teams||[]).map(t=>({
+        ...t,
+        role:members.find(m=>m.team_id===t.id)?.role||"member"
+      }));
+      if(!state.activeTeam||!ids.includes(state.activeTeam.id))
+        state.activeTeam=state.teams[0]||null;
+      renderTeams();
+      if(state.activeTeam)await loadTeamPreps();
+    }
+
+    function renderTeams(){
+      const host=document.getElementById("team-list");
+      if(!state.teams.length){
+        host.innerHTML='<p class="fieldhint">You have not joined a team yet. Create one or enter an invite code.</p>';
+        document.getElementById("team-work").hidden=true;
+        return;
+      }
+      host.innerHTML=state.teams.map(t=>`
+        <div class="team-item">
+          <div><b>${esc(t.name)}</b><div class="src">${esc(t.role)} · invite code ${esc(t.invite_code)}</div></div>
+          <button class="secondary" type="button" data-team="${esc(t.id)}">Open workspace</button>
+        </div>
+      `).join("");
+      host.querySelectorAll("[data-team]").forEach(b=>
+        b.addEventListener("click",async()=>{
+          state.activeTeam=state.teams.find(t=>t.id===b.dataset.team)||null;
+          await loadTeamPreps();
+        })
+      );
+    }
+
+    async function loadTeamPreps(){
+      const team=state.activeTeam;
+      if(!team)return;
+      document.getElementById("team-work").hidden=false;
+      document.getElementById("active-team-label").textContent="Active team: "+team.name;
+      document.getElementById("team-copy-code").dataset.code=team.invite_code;
+      const {data,error}=await client.from("team_preparations")
+        .select("id,title,format,content,updated_at,updated_by")
+        .eq("team_id",team.id).order("updated_at",{ascending:false}).limit(50);
+      if(error)throw error;
+      const host=document.getElementById("team-preps");
+      if(!data?.length){
+        host.innerHTML='<p class="fieldhint">No team preparations yet. Generate one and choose “Save current prep to team”.</p>';
+        return;
+      }
+      host.innerHTML=data.map(item=>`
+        <div class="team-item">
+          <div><b>${esc(item.title)}</b><div class="src">${esc(item.format)} · ${esc(new Date(item.updated_at).toLocaleString())}</div></div>
+          <button class="secondary" type="button" data-teamload="${esc(item.id)}">Open</button>
+        </div>
+      `).join("");
+      host.querySelectorAll("[data-teamload]").forEach(b=>
+        b.addEventListener("click",()=>{
+          const item=data.find(x=>x.id===b.dataset.teamload);
+          if(!item)return;
+          currentPrep=item.content;
+          currentKind=item.format==="Model UN"?"mun":"debate";
+          if(currentKind==="mun"){
+            showFeaturePanel("mun");
+            renderMun(currentPrep);
+          }else{
+            showFeaturePanel("debate");
+            render(currentPrep);
+            document.getElementById("out").hidden=false;
+          }
+          setStatus("Opened preparation from team "+team.name+".");
+        })
+      );
+    }
+
+    async function action(fn,success){
+      try{await fn();if(success)say(success);}
+      catch(e){say(errorText(e));}
+    }
+
+    document.getElementById("auth-signin").addEventListener("click",()=>action(async()=>{
+      const email=document.getElementById("auth-email").value.trim();
+      const password=document.getElementById("auth-password").value;
+      if(!email||!password)throw new Error("Enter email and password.");
+      const {error}=await client.auth.signInWithPassword({email,password});
+      if(error)throw error;
+    },"Signed in."));
+
+    document.getElementById("auth-signup").addEventListener("click",()=>action(async()=>{
+      const email=document.getElementById("auth-email").value.trim();
+      const password=document.getElementById("auth-password").value;
+      if(!email||password.length<8)
+        throw new Error("Enter an email and a password of at least 8 characters.");
+      const {data,error}=await client.auth.signUp({email,password});
+      if(error)throw error;
+      if(!data.session)say("Account created. Check your email to confirm it, then sign in.");
+      else say("Account created and signed in.");
+    },"Account created."));
+
+    document.getElementById("auth-reset").addEventListener("click",()=>action(async()=>{
+      const email=document.getElementById("auth-email").value.trim();
+      if(!email)throw new Error("Enter your email first.");
+      const {error}=await client.auth.resetPasswordForEmail(email,{
+        redirectTo:location.origin+location.pathname
+      });
+      if(error)throw error;
+    },"Password reset email requested. Check your inbox."));
+
+    document.getElementById("auth-signout").addEventListener("click",()=>action(async()=>{
+      const {error}=await client.auth.signOut();
+      if(error)throw error;
+    }));
+
+    document.getElementById("cloud-refresh").addEventListener("click",()=>action(loadHistory,"Cloud history refreshed."));
+    document.getElementById("cloud-history").addEventListener("click",()=>action(loadHistory,"Cloud history loaded."));
+    document.getElementById("teams-toggle").addEventListener("click",()=>{teamBox.hidden=!teamBox.hidden;});
+
+    document.getElementById("team-create").addEventListener("click",()=>action(async()=>{
+      const name=document.getElementById("team-name").value.trim();
+      if(!name)throw new Error("Enter a team name.");
+      const {error}=await client.rpc("create_debatrix_team",{team_name:name});
+      if(error)throw error;
+      document.getElementById("team-name").value="";
+      await loadTeams();
+    },"Team created."));
+
+    document.getElementById("team-join").addEventListener("click",()=>action(async()=>{
+      const code=document.getElementById("team-invite").value.trim();
+      if(!code)throw new Error("Enter an invite code.");
+      const {error}=await client.rpc("join_debatrix_team",{invite_code:code});
+      if(error)throw error;
+      document.getElementById("team-invite").value="";
+      await loadTeams();
+    },"Joined team."));
+
+    document.getElementById("team-copy-code").addEventListener("click",async()=>{
+      try{
+        await navigator.clipboard.writeText(document.getElementById("team-copy-code").dataset.code||"");
+        say("Invite code copied. Share it only with people you want in the team.");
+      }catch(e){say("Could not copy invite code: "+errorText(e));}
+    });
+
+    document.getElementById("team-save-prep").addEventListener("click",()=>action(async()=>{
+      if(!currentPrep)throw new Error("Generate or open a preparation first.");
+      if(!state.activeTeam)throw new Error("Choose a team first.");
+      const {error}=await client.from("team_preparations").insert({
+        team_id:state.activeTeam.id,
+        title:prepTitle(currentPrep),
+        format:currentKind==="mun"?"Model UN":(currentPrep.level||"School debate"),
+        content:currentPrep,
+        updated_by:state.user.id
+      });
+      if(error)throw error;
+      await loadTeamPreps();
+    },"Preparation saved to team."));
+
+    document.getElementById("team-refresh-preps").addEventListener("click",()=>action(loadTeamPreps,"Team preparations refreshed."));
+
+    // Combine local and cloud history.
+    const originalRenderHistory=renderHistory;
+    renderHistory=function(){
+      const host=document.getElementById("history-list");
+      const local=readHistory();
+      const cloud=state.cloudHistory||[];
+      if(!local.length&&!cloud.length){
+        host.innerHTML='<p class="fieldhint">No saved preparations yet. Generate one and press “Save preparation”.</p>';
+        return;
+      }
+      host.innerHTML=
+        local.map((item,i)=>`
+          <div class="history-item">
+            <div><b>${esc(item.title)}</b><div class="src">Local · ${esc(item.kind)} · ${esc(item.date)}</div></div>
+            <div><button type="button" data-load="${i}">Open</button> <button type="button" data-remove="${i}">Delete</button></div>
+          </div>
+        `).join("")+
+        cloud.map(item=>`
+          <div class="history-item">
+            <div><b>${esc(item.title)}</b><div class="src">Cloud · ${esc(item.mode)} · ${esc(new Date(item.created_at).toLocaleString())}</div></div>
+            <div><button type="button" data-cloud-load="${esc(item.id)}">Open</button></div>
+          </div>
+        `).join("");
+
+      host.querySelectorAll("[data-cloud-load]").forEach(b=>
+        b.addEventListener("click",()=>{
+          const item=cloud.find(x=>x.id===b.dataset.cloudLoad);
+          if(!item)return;
+          currentPrep=item.content;
+          currentKind=item.mode;
+          showFeaturePanel(item.mode==="mun"?"mun":"debate");
+          if(item.mode==="mun")renderMun(item.content);
+          else{render(item.content);document.getElementById("out").hidden=false;}
+          setStatus("Loaded cloud preparation.");
+        })
+      );
+    };
+
+    window.debatrixCloud={get user(){return state.user;},savePrep,createShare,loadHistory,client};
+
+    client.auth.getSession().then(({data,error})=>{
+      if(error){say(error.message);return;}
+      syncAuth(data.session).catch(e=>say(errorText(e)));
+    });
+    client.auth.onAuthStateChange((_event,session)=>{
+      setTimeout(()=>syncAuth(session).catch(e=>say(errorText(e))),0);
+    });
+
+    const params=new URLSearchParams(location.search);
+    const share=params.get("share");
+    if(share){
+      client.rpc("get_shared_preparation",{share_token:share}).then(({data,error})=>{
+        if(error||!data?.length){
+          say(errorText(error)||"Share link not found.");
+          return;
+        }
+        const item=data[0];
+        currentPrep=item.content;
+        currentKind=item.mode;
+        showFeaturePanel(item.mode==="mun"?"mun":"debate");
+        if(item.mode==="mun")renderMun(item.content);
+        else{render(item.content);document.getElementById("out").hidden=false;}
+        setStatus("Opened a cloud-shared preparation.");
+      });
+    }
+  }).catch(e=>say("Could not initialize account services: "+errorText(e)));
+})();
 </script>
 </body>
 </html>
-
-
-
